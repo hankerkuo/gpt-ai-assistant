@@ -34,7 +34,7 @@ const createChatCompletion = ({
 }) => instance.post('/v1/chat/completions', {
   model: 'gpt-3.5-turbo',
   messages,
-  maxTokens: config.OPENAI_COMPLETION_MAX_TOKENS,
+  max_tokens: config.OPENAI_COMPLETION_MAX_TOKENS,
 });
 
 const createTextCompletion = ({
