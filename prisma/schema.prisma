@@ -7,12 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model USER_INFO {
+model user_info {
   USER_ID   String @id @db.VarChar(255)
   USER_NAME String @db.VarChar(255)
 }
 
-model USER_PRIVILEGE {
-  USER_ID String @id @db.VarChar(255)
-  TRIAL   String @default("N") @db.VarChar(16)
+model user_privilege {
+  USER_ID          String @id @db.VarChar(255)
+  TRIAL            String @default("N") @db.VarChar(16)
+  TRIAL_PROMPT_NUM Int    @default(0)
 }
