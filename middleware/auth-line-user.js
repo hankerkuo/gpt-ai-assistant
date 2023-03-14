@@ -10,8 +10,21 @@ import {
 import { replyMessage } from '../utils/index.js';
 
 const authLineUser = async (req, res, next) => {
-  const event = new Event(req.body.events[0]);
-  const context = new Context(event);
+  let context = null;
+  await Promise.all(
+    req.body.events
+      .map((event) => new Event(event))
+      .filter((event) => event.isMessage)
+      .filter((event) => event.isText || event.isAudio)
+      .map((event) => new Context(event))
+      .map((ctx) => {ctx.initialize(); context=ctx}),
+  )
+  if (!context) {
+    next();
+    return;
+  }
+  // const event = new Event(req.body.events[0]);
+  // const context = new Context(event);
   const userId = context.userId;
   logger.info(`Line user id access: ${userId}`);
 
