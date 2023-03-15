@@ -23,6 +23,7 @@ const check = (context) => (
  */
 const exec = (context) => check(context) && (
   async () => {
+    console.log('User trying to talk with bot: ', context.userId);
     const prompt = getPrompt(context.userId);
     prompt.write(ROLE_HUMAN, `${t('__COMPLETION_DEFAULT_AI_TONE')(config.BOT_TONE)}${context.trimmedText}`).write(ROLE_AI);
     try {
