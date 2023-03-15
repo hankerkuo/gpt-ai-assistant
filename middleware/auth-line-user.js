@@ -54,8 +54,8 @@ const authLineUser = async (req, res, next) => {
       messages: [
         {
           type: 'text',
-          text: 'You do not have enough questions to ask, \
-            please register or wait until tomorrow!',
+          text: 'You do not have enough questions to ask, ' +
+            'please register or wait until tomorrow!',
         },
       ],
     });
