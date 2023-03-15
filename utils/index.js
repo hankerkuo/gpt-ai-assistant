@@ -14,6 +14,7 @@ import getVersion from './get-version.js';
 import replyMessage from './reply-message.js';
 import validateSignature from './validate-signature.js';
 import logger from './logger.js';
+import { isDifferenceGreaterThanOneDay, createToday8amDate } from './date-compare.js';
 
 export {
   addMark,
@@ -31,5 +32,7 @@ export {
   getVersion,
   replyMessage,
   validateSignature,
-  logger
+  logger,
+  isDifferenceGreaterThanOneDay,
+  createToday8amDate
 };
