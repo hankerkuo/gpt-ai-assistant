@@ -4,7 +4,8 @@ import { logger } from '../utils/index.js';
 import {
   isUserExist,
   getTrialRemainingPrompts,
-  grantTrialPrompts,
+  firstTimeGrantTrialPrompts,
+  manageTrialPrompts,
   decreaseTrialPrompts
 } from '../db/service/user-service.js';
 import { replyMessage } from '../utils/index.js';
@@ -23,8 +24,7 @@ const authLineUser = async (req, res, next) => {
     next();
     return;
   }
-  // const event = new Event(req.body.events[0]);
-  // const context = new Context(event);
+
   const userId = context.userId;
   logger.info(`Line user id access: ${userId}`);
 
@@ -39,14 +39,15 @@ const authLineUser = async (req, res, next) => {
         },
       ],
     });
-    await grantTrialPrompts(userId, 10);
+    await firstTimeGrantTrialPrompts(userId, 10);
     logger.info(`New user ${userId} Trial privilege granted`);
     res.status(200).send(`New user ${userId} Trial privilege granted`);
     return;
   }
 
+  await manageTrialPrompts(userId);
+
   if ((await getTrialRemainingPrompts(userId)) === 0) {
-    //TODO: add 10 prompts trial every day
     logger.info(`Line user: ${userId}, does not have enough trial prompts`);
     replyMessage({
       replyToken: context.replyToken,
@@ -62,7 +63,7 @@ const authLineUser = async (req, res, next) => {
     return;
   }
 
-  decreaseTrialPrompts(userId, 1);
+  await decreaseTrialPrompts(userId, 1);
   next();
 };
 

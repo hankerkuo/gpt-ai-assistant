@@ -1,4 +1,5 @@
 import getPrisma from '../prisma-client.js';
+import { isDifferenceGreaterThanOneDay, createToday8amDate } from '../../utils/date-compare.js';
 
 export async function isUserExist(userId) {
   const query = await getPrisma().user_info.findUnique({
@@ -40,21 +41,36 @@ export async function createUser(userId, name) {
   const query = await getPrisma().user_info.create({
     data: {
       USER_ID: userId,
-      USER_NAME: name? name : 'Unknown',
+      USER_NAME: name ? name : 'Unknown',
     },
   });
   return query;
 }
 
-export async function grantTrialPrompts(userId, num) {
-  if (!(await isUserExist(userId))) {
-    await createUser(userId);
-  }
-  const query = await getPrisma().user_privilege.create({
-    data: {
+export async function firstTimeGrantTrialPrompts(userId, num) {
+  await getPrisma().$transaction(async (prisma) => {
+    if (!(await isUserExist(userId))) {
+      await createUser(userId);
+    }
+    return prisma.user_privilege.create({
+      data: {
+        USER_ID: userId,
+        TRIAL: 'Y',
+        TRIAL_PROMPT_NUM: num,
+        TRIAL_PROMPT_LAST_RENEW: createToday8amDate(),
+      },
+    });
+  });
+}
+
+async function updateTrialPrompts(userId, num) {
+  const query = await getPrisma().user_privilege.update({
+    where: {
       USER_ID: userId,
-      TRIAL: 'Y',
+    },
+    data: {
       TRIAL_PROMPT_NUM: num,
+      TRIAL_PROMPT_LAST_RENEW: createToday8amDate(),
     },
   });
   return query;
@@ -72,4 +88,20 @@ export async function decreaseTrialPrompts(userId, num) {
     },
   });
   return query;
+}
+
+export async function manageTrialPrompts(userId) {
+  const query = await getPrisma().user_privilege.findUnique({
+    where: {
+      USER_ID: userId,
+    },
+  });
+  if (
+    isDifferenceGreaterThanOneDay(
+      new Date(),
+      new Date(query.TRIAL_PROMPT_LAST_RENEW)
+    )
+  ) {
+    await updateTrialPrompts(userId, 10);
+  }
 }
