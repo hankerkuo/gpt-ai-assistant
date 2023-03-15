@@ -96,6 +96,7 @@ export async function manageTrialPrompts(userId) {
       USER_ID: userId,
     },
   });
+  // prompt renew every 8:00 am
   if (
     isDifferenceGreaterThanOneDay(
       new Date(),

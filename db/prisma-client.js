@@ -33,4 +33,6 @@ async function synchronized(task) {
   }
 }
 
+// TODO: Add a function to close the PrismaClient
+
 export default getPrisma;
