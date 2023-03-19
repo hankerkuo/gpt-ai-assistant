@@ -10,12 +10,12 @@ export default class logger {
     console.log(logger.getCurrentDate(), ...args);
   }
   static info(...args) {
-    console.info(logger.getCurrentDate(), ...args);
+    console.info(logger.getCurrentDate(), '[INFO]', ...args);
   }
   static error(...args) {
-    console.error(logger.getCurrentDate(), ...args);
+    console.error(logger.getCurrentDate(), '[ERROR]', ...args);
   }
   static warn(...args) {
-    console.warn(logger.getCurrentDate(), ...args);
+    console.warn(logger.getCurrentDate(), '[WARN]', ...args);
   }
 }

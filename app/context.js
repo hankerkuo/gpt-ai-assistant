@@ -12,6 +12,7 @@ import {
   fetchGroup,
   fetchUser,
   generateTranscription,
+  logger
 } from '../utils/index.js';
 import { Command, COMMAND_BOT_RETRY } from './commands/index.js';
 import { updateHistory } from './history/index.js';
@@ -243,14 +244,20 @@ class Context {
    */
   pushError(err) {
     this.error = err;
-    console.log(this.error.message);
+    logger.error(this.error.message);
     if (err.code === 'ECONNABORTED') {
       if (config.ERROR_TIMEOUT_DISABLED) return this;
-      return this.pushText(t('__ERROR_ECONNABORTED'), [COMMAND_BOT_RETRY]);
+      logger.error('Timed out');
+      return this.pushText(t('__ERROR_SYSTEM_UNSTABLE'), [COMMAND_BOT_RETRY]);
     }
-    if (err.config?.baseURL) this.pushText(`${err.config.method.toUpperCase()} ${err.config.baseURL}${err.config.url}`);
-    if (err.response) this.pushText(`Request failed with status code ${err.response.status}`);
-    this.pushText(err.message);
+    if (err.config?.baseURL) {
+      logger.error(`${err.config.method.toUpperCase()} ${err.config.baseURL}${err.config.url}`);
+    }
+    if (err.response) {
+      logger.error(`Request failed with status code ${err.response.status}`);
+    }
+    logger.error(err.message);
+    this.pushText(t('__ERROR_SYSTEM_UNSTABLE'));
     return this;
   }
 }
