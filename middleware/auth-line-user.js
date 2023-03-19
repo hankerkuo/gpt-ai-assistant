@@ -5,8 +5,7 @@ import {
   isUserExist,
   getTrialRemainingPrompts,
   firstTimeGrantTrialPrompts,
-  manageTrialPrompts,
-  decreaseTrialPrompts
+  manageTrialPrompts
 } from '../db/service/user-service.js';
 import { replyMessage } from '../utils/index.js';
 
@@ -63,7 +62,6 @@ const authLineUser = async (req, res, next) => {
     return;
   }
 
-  await decreaseTrialPrompts(userId, 1);
   next();
 };
 
