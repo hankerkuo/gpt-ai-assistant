@@ -1,4 +1,4 @@
-import getPrisma from '../prisma-client.js';
+import { getPrisma } from '../prisma-client.js';
 import { isDifferenceGreaterThanOneDay, createToday8amDate } from '../../utils/date-compare.js';
 
 export async function isUserExist(userId) {
