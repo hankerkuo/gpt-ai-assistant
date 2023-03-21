@@ -7,6 +7,10 @@ import { t } from '../locales/index.js';
 import { fetchVersion, getVersion } from '../utils/index.js';
 import { createEvents, MOCK_USER_01, TIMEOUT } from './utils.js';
 
+jest.mock('../db/service/user-service.js', () => ({
+  decreaseTrialPrompts: jest.fn(),
+}));
+
 beforeEach(() => {
   //
 });

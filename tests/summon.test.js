@@ -7,6 +7,10 @@ import {
   createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT,
 } from './utils.js';
 
+jest.mock('../db/service/user-service.js', () => ({
+  decreaseTrialPrompts: jest.fn(),
+}));
+
 beforeEach(() => {
   //
 });

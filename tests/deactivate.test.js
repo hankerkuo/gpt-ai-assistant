@@ -1,5 +1,5 @@
 import {
-  afterEach, beforeEach, expect, test,
+  afterEach, beforeEach, expect, jest, test,
 } from '@jest/globals';
 import { getPrompt, handleEvents, removePrompt } from '../app/index.js';
 import { COMMAND_BOT_ACTIVATE, COMMAND_BOT_DEACTIVATE } from '../app/commands/index.js';
@@ -8,6 +8,10 @@ import storage from '../storage/index.js';
 import {
   createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT,
 } from './utils.js';
+
+jest.mock('../db/service/user-service.js', () => ({
+  decreaseTrialPrompts: jest.fn(),
+}));
 
 beforeEach(async () => {
   const events = [
