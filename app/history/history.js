@@ -6,6 +6,7 @@ import Message from './message.js';
 const MAX_MESSAGES = config.APP_MAX_PROMPT_MESSAGES / 2;
 const MAX_TOKENS = config.APP_MAX_PROMPT_TOKENS / 2;
 
+//TODO: move the history to the database
 class History {
   messages = [];
 

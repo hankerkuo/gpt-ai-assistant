@@ -45,4 +45,5 @@ describe('Test user service', () => {
     const result3 = await hasTrialPrivilege('non_exist_id');
     expect(result3).toBe(false);
   });
+  //TODO: add the remaining tests
 });
