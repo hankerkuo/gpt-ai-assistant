@@ -16,5 +16,13 @@ model user_privilege {
   USER_ID                 String   @id @db.VarChar(255)
   TRIAL                   String   @default("N") @db.VarChar(16)
   TRIAL_PROMPT_NUM        Int      @default(0)
+  PROMPT_GRANT_PER_DAY    Int
   TRIAL_PROMPT_LAST_RENEW DateTime @default(now()) @db.Timestamp(0)
+}
+
+model user_issue_report {
+  ID          Int      @id @default(autoincrement()) @db.UnsignedInt
+  USER_ID     String   @db.VarChar(255)
+  CONTENT     String   @db.Text
+  UPDATE_TIME DateTime @default(now()) @db.Timestamp(0)
 }
