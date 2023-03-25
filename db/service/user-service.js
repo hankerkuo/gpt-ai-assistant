@@ -57,7 +57,7 @@ export async function firstTimeGrantTrialPrompts(userId, num) {
         USER_ID: userId,
         TRIAL: 'Y',
         TRIAL_PROMPT_NUM: num,
-        PROMPT_GRANT_PER_DAY: 10,
+        PROMPT_GRANT_PER_DAY: num,
         TRIAL_PROMPT_LAST_RENEW: createToday8amDate(),
       },
     });
