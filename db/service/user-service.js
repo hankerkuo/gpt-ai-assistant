@@ -57,6 +57,7 @@ export async function firstTimeGrantTrialPrompts(userId, num) {
         USER_ID: userId,
         TRIAL: 'Y',
         TRIAL_PROMPT_NUM: num,
+        PROMPT_GRANT_PER_DAY: 10,
         TRIAL_PROMPT_LAST_RENEW: createToday8amDate(),
       },
     });
@@ -103,6 +104,9 @@ export async function manageTrialPrompts(userId) {
       new Date(query.TRIAL_PROMPT_LAST_RENEW)
     )
   ) {
-    await updateTrialPrompts(userId, 10);
+    await updateTrialPrompts(userId, query.PROMPT_GRANT_PER_DAY);
+    return true;
+  } else {
+    return false;
   }
 }

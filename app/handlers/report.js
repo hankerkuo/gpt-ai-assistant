@@ -16,6 +16,7 @@ const exec = (context) => check(context) && (
   async () => {
     updateHistory(context.id, (history) => history.erase());
     context.pushText(COMMAND_SYS_REPORT.reply, GENERAL_COMMANDS);
+    //TODO: open report session after user send report text
     return context;
   }
 )();
