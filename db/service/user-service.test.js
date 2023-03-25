@@ -1,28 +1,19 @@
-import { getTrialRemainingPrompts, hasTrialPrivilege } from './user-service';
+import {
+  getTrialRemainingPrompts,
+  hasTrialPrivilege,
+  manageTrialPrompts,
+} from './user-service';
+
+import { mockUserPrivilege } from '../../tests/mock/user-privilege.mock';
+import { getPrisma } from '../prisma-client.js';
 
 jest.mock('../prisma-client.js', () => ({
   getPrisma: jest.fn().mockReturnValue({
     user_privilege: {
       findUnique: async (condition) => {
-        switch (condition.where.USER_ID) {
-          case 'trial_id':
-            return {
-              USER_ID: 'trial_id',
-              TRIAL: 'Y',
-              TRIAL_PROMPT_NUM: 5,
-              TRIAL_PROMPT_LAST_RENEW: '2023-03-19T00:00:00.000Z',
-            };
-          case 'other_id':
-            return {
-              USER_ID: 'other_id',
-              TRIAL: 'N',
-              TRIAL_PROMPT_NUM: 0,
-              TRIAL_PROMPT_LAST_RENEW: '2023-03-19T00:00:00.000Z',
-            };
-          default:
-            return null;
-        }
+        return mockUserPrivilege(condition.where.USER_ID);
       },
+      update: jest.fn(),
     },
   }),
 }));
@@ -46,4 +37,15 @@ describe('Test user service', () => {
     expect(result3).toBe(false);
   });
   //TODO: add the remaining tests
+  test('Test manage trial prompts', async () => {
+    const result = await manageTrialPrompts('id_need_to_renew');
+    expect(result).toBe(true);
+    const result2 = await manageTrialPrompts('id_no_need_to_renew');
+    expect(result2).toBe(false);
+    console.log(await getPrisma().user_privilege.findUnique({
+      where: {
+        USER_ID: 'id_need_to_renew',
+      },
+    }));
+  });
 });
