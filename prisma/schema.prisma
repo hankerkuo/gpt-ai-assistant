@@ -10,6 +10,7 @@ datasource db {
 model user_info {
   USER_ID   String @id @db.VarChar(255)
   USER_NAME String @db.VarChar(255)
+  CHAT_MODE String @default("CHAT") @db.VarChar(16)
 }
 
 model user_privilege {
