@@ -8,6 +8,7 @@ import drawHandler from './draw.js';
 import forgetHandler from './forget.js';
 import enquireHandler from './enquire.js';
 import reportHandler from './report.js';
+import issueReportHandler from './issue-report.js';
 import retryHandler from './retry.js';
 import searchHandler from './search.js';
 import talkHandler from './talk.js';
@@ -23,6 +24,7 @@ export {
   drawHandler,
   forgetHandler,
   enquireHandler,
+  issueReportHandler,
   reportHandler,
   retryHandler,
   searchHandler,

@@ -30,6 +30,7 @@ import COMMAND_SYS_COMMAND from './sys-command.js';
 import COMMAND_SYS_DEPLOY from './sys-deploy.js';
 import COMMAND_SYS_DOC from './sys-doc.js';
 import COMMAND_SYS_REPORT from './sys-report.js';
+import COMMAND_SYS_REPORT_FINISH from './sys-report-finish.js';
 import COMMAND_SYS_VERSION from './sys-version.js';
 import COMMAND_TRANSLATE_TO_EN from './translate-to-en.js';
 import COMMAND_TRANSLATE_TO_JA from './translate-to-ja.js';
@@ -64,6 +65,7 @@ export const ALL_COMMANDS = [
   COMMAND_SYS_DEPLOY,
   COMMAND_SYS_DOC,
   COMMAND_SYS_REPORT,
+  COMMAND_SYS_REPORT_FINISH,
   COMMAND_SYS_VERSION,
   COMMAND_TRANSLATE_TO_EN,
   COMMAND_TRANSLATE_TO_JA,
@@ -124,6 +126,7 @@ export {
   COMMAND_SYS_DEPLOY,
   COMMAND_SYS_DOC,
   COMMAND_SYS_REPORT,
+  COMMAND_SYS_REPORT_FINISH,
   COMMAND_SYS_VERSION,
   COMMAND_TRANSLATE_TO_EN,
   COMMAND_TRANSLATE_TO_JA,
