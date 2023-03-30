@@ -8,6 +8,7 @@ import {
   manageTrialPrompts
 } from '../db/service/user-service.js';
 import { replyMessage } from '../utils/index.js';
+import { t } from '../locales/index.js';
 
 const authLineUser = async (req, res, next) => {
   let context = null;
@@ -34,7 +35,7 @@ const authLineUser = async (req, res, next) => {
       messages: [
         {
           type: 'text',
-          text: 'Greetings! From now on you can use this bot for 10 questions every day!',
+          text: t('__MESSAGE_GREETING_WORDS'),
         },
       ],
     });
@@ -53,8 +54,7 @@ const authLineUser = async (req, res, next) => {
       messages: [
         {
           type: 'text',
-          text: 'You do not have enough questions to ask, ' +
-            'please register or wait until tomorrow!',
+          text: t('__MESSAGE_QUOTA_EXCEEDED'),
         },
       ],
     });
