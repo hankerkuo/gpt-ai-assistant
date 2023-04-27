@@ -13,6 +13,10 @@ jest.mock('../db/service/user-service.js', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
+jest.mock('../db/service/chat-mode-service.js', () => ({
+  getChatMode: jest.fn().mockReturnValue('CHAT'),
+}));
+
 beforeEach(() => {
   //
 });

@@ -13,6 +13,10 @@ jest.mock('../db/service/user-service.js', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
+jest.mock('../db/service/chat-mode-service.js', () => ({
+  getChatMode: jest.fn().mockReturnValue('CHAT'),
+}));
+
 beforeEach(async () => {
   const events = [
     ...createEvents([COMMAND_BOT_ACTIVATE.text]),
@@ -36,6 +40,7 @@ test('COMMAND_BOT_DEACTIVATE', async () => {
   } catch (err) {
     console.error(err);
   }
+  console.log(getPrompt(MOCK_USER_01).messages);
   expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
   const replies = results.map(({ messages }) => messages.map(({ text }) => text));
   expect(replies).toEqual(
