@@ -6,3 +6,6 @@ note.md
 
 ### coverage report
 /coverage
+
+### build output
+/dist
