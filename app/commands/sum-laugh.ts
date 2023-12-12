@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_LAUGH_LABEL'),
   text: t('__COMMAND_SUM_LAUGH_TEXT'),
   prompt: t('__COMMAND_SUM_LAUGH_PROMPT'),
-  aliases: [
-    '/laugh',
-    'Laugh',
-  ],
+  aliases: ['/laugh', 'Laugh'],
 });

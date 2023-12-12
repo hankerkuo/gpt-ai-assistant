@@ -1,17 +1,15 @@
-import { TYPE_SUM, TYPE_ANALYZE, TYPE_TRANSLATE } from '../../constants/command';
+import {
+  TYPE_SUM,
+  TYPE_ANALYZE,
+  TYPE_TRANSLATE,
+} from '../../constants/command';
 
 class Message {
   role;
 
   content: string;
 
-  constructor({
-    role,
-    content,
-  }: {
-    role: string;
-    content: string;
-  }) {
+  constructor({ role, content }: { role: string; content: string }) {
     this.role = role;
     this.content = content;
   }

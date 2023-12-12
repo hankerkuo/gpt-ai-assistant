@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SYS_VERSION_LABEL'),
   text: t('__COMMAND_SYS_VERSION_TEXT'),
   reply: t('__COMMAND_SYS_VERSION_REPLY'),
-  aliases: [
-    '/version',
-    'Version',
-  ],
+  aliases: ['/version', 'Version'],
 });

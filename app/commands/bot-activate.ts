@@ -7,9 +7,5 @@ export default new Command({
   label: t('__COMMAND_BOT_ACTIVATE_LABEL'),
   text: t('__COMMAND_BOT_ACTIVATE_TEXT'),
   reply: t('__COMMAND_BOT_ACTIVATE_REPLY'),
-  aliases: [
-    ...t('__COMMAND_BOT_ACTIVATE_ALIASES'),
-    '/activate',
-    'Activate',
-  ],
+  aliases: [...t('__COMMAND_BOT_ACTIVATE_ALIASES'), '/activate', 'Activate'],
 });

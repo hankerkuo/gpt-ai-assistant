@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_COMFORT_LABEL'),
   text: t('__COMMAND_SUM_COMFORT_TEXT'),
   prompt: t('__COMMAND_SUM_COMFORT_PROMPT'),
-  aliases: [
-    '/comfort',
-    'Comfort',
-  ],
+  aliases: ['/comfort', 'Comfort'],
 });

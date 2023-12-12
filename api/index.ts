@@ -17,7 +17,7 @@ app.use(
     verify: (req: CustomIncomingMessage, res: ServerResponse, buf: Buffer) => {
       req.rawBody = buf.toString();
     },
-  })
+  }),
 );
 
 app.get('/', (req, res) => {
@@ -52,7 +52,7 @@ app.post(
       res.sendStatus(500);
     }
     if (config.APP_DEBUG) printPrompts();
-  }
+  },
 );
 
 if (config.APP_PORT) {

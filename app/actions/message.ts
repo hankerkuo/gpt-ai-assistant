@@ -8,10 +8,7 @@ class MessageAction extends Action {
 
   text: string;
 
-  constructor({
-    label,
-    text,
-  }: {label: string, text: string}) {
+  constructor({ label, text }: { label: string; text: string }) {
     super();
     this.label = label;
     this.text = text;

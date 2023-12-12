@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SYS_REPORT_LABEL'),
   text: t('__COMMAND_SYS_REPORT_TEXT'),
   reply: t('__COMMAND_SYS_REPORT_REPLY'),
-  aliases: [
-    '/report',
-    'Report',
-  ],
+  aliases: ['/report', 'Report'],
 });

@@ -15,10 +15,12 @@ const check = (context: Context) => context.hasCommand(COMMAND_BOT_DEACTIVATE);
  * @param {Context} context
  * @returns {Promise<Context>}
  */
-const exec = (context: Context) => check(context) && (
-  async () => {
+const exec = (context: Context) =>
+  check(context) &&
+  (async () => {
     updateHistory(context.id, (history) => history.erase());
-    if (!config.VERCEL_ACCESS_TOKEN) context.pushText(t('__ERROR_MISSING_ENV')('VERCEL_ACCESS_TOKEN'));
+    if (!config.VERCEL_ACCESS_TOKEN)
+      context.pushText(t('__ERROR_MISSING_ENV')('VERCEL_ACCESS_TOKEN'));
     try {
       await updateSources(context.id, (source) => {
         source.bot.isActivated = false;
@@ -28,7 +30,6 @@ const exec = (context: Context) => check(context) && (
       context.pushError(err);
     }
     return context;
-  }
-)();
+  })();
 
 export default exec;

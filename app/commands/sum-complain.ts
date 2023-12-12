@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_COMPLAIN_LABEL'),
   text: t('__COMMAND_SUM_COMPLAIN_TEXT'),
   prompt: t('__COMMAND_SUM_COMPLAIN_PROMPT'),
-  aliases: [
-    '/complain',
-    'Complain',
-  ],
+  aliases: ['/complain', 'Complain'],
 });

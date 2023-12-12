@@ -15,10 +15,12 @@ const check = (context: Context) => context.hasCommand(COMMAND_SYS_DEPLOY);
  * @param {Context} context
  * @returns {Promise<Context>}
  */
-const exec = (context: Context) => check(context) && (
-  async () => {
+const exec = (context: Context) =>
+  check(context) &&
+  (async () => {
     updateHistory(context.id, (history) => history.erase());
-    if (!config.VERCEL_DEPLOY_HOOK_URL) context.pushText(t('__ERROR_MISSING_ENV')('VERCEL_DEPLOY_HOOK_URL'));
+    if (!config.VERCEL_DEPLOY_HOOK_URL)
+      context.pushText(t('__ERROR_MISSING_ENV')('VERCEL_DEPLOY_HOOK_URL'));
     try {
       await deploy();
       context.pushText(COMMAND_SYS_DEPLOY.reply);
@@ -26,7 +28,6 @@ const exec = (context: Context) => check(context) && (
       context.pushError(err);
     }
     return context;
-  }
-)();
+  })();
 
 export default exec;

@@ -12,8 +12,6 @@ export async function insertReport(userId: string, report: string) {
   return query;
 }
 
-
-
 export async function handleUserReport(userId: string, report: string) {
   const prismaClient = await getPrisma();
   await prismaClient.$transaction(async (tx) => {

@@ -6,10 +6,7 @@ interface ReplyMessageProps {
   messages: any[]; // Replace 'any' with the appropriate type for messages
 }
 
-const replyMessage = ({
-  replyToken,
-  messages,
-}: ReplyMessageProps) => {
+const replyMessage = ({ replyToken, messages }: ReplyMessageProps) => {
   if (config.APP_ENV !== 'production') return { replyToken, messages };
   return reply({ replyToken, messages });
 };

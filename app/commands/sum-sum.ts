@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_SUM_LABEL'),
   text: t('__COMMAND_SUM_SUM_TEXT'),
   prompt: t('__COMMAND_SUM_SUM_PROMPT'),
-  aliases: [
-    '/sum',
-    'Sum',
-  ],
+  aliases: ['/sum', 'Sum'],
 });

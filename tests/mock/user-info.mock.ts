@@ -8,4 +8,4 @@ export const mockUserInfo = (userId) => {
     default:
       return null;
   }
-}
+};

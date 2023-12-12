@@ -1,4 +1,7 @@
-import { MESSAGE_TYPE_TEMPLATE, TEMPLATE_TYPE_BUTTONS } from '../../services/line';
+import {
+  MESSAGE_TYPE_TEMPLATE,
+  TEMPLATE_TYPE_BUTTONS,
+} from '../../services/line';
 import { MessageAction } from '../actions/index';
 import Message from './message';
 
@@ -9,13 +12,7 @@ class TemplateMessage extends Message {
 
   template;
 
-  constructor({
-    text,
-    actions,
-  }: {
-    text: string,
-    actions: any[],
-  }) {
+  constructor({ text, actions }: { text: string; actions: any[] }) {
     super();
     this.altText = text;
     this.template = {

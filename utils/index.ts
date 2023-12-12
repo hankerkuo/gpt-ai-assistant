@@ -14,7 +14,10 @@ import getVersion from './get-version';
 import replyMessage from './reply-message';
 import validateSignature from './validate-signature';
 import logger from './logger';
-import { isDifferenceGreaterThanOneDay, createToday8amDate } from './date-compare';
+import {
+  isDifferenceGreaterThanOneDay,
+  createToday8amDate,
+} from './date-compare';
 
 export {
   addMark,
@@ -34,5 +37,5 @@ export {
   validateSignature,
   logger,
   isDifferenceGreaterThanOneDay,
-  createToday8amDate
+  createToday8amDate,
 };

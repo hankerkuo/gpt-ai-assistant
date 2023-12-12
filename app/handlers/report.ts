@@ -8,7 +8,8 @@ import logger from '../../utils/logger';
  * @param {Context} context
  * @returns {boolean}
  */
-const enterReportMode = (context: Context) => context.hasCommand(COMMAND_SYS_REPORT);
+const enterReportMode = (context: Context) =>
+  context.hasCommand(COMMAND_SYS_REPORT);
 
 /**
  * @param {Context} context

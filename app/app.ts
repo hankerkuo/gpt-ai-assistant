@@ -48,7 +48,7 @@ const handleEvents = async (events = []) => {
       .filter((event) => event.isMessage)
       .filter((event) => event.isText || event.isAudio)
       .map((event) => new Context(event))
-      .map((context) => context.initialize())
+      .map((context) => context.initialize()),
   );
 
   const handledContexts: Context[] = [];
@@ -59,7 +59,7 @@ const handleEvents = async (events = []) => {
   return Promise.all(
     handledContexts
       .filter((context) => context.messages.length > 0)
-      .map((context) => replyMessage(context))
+      .map((context) => replyMessage(context)),
   );
 };
 

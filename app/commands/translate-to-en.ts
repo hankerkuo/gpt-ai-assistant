@@ -7,9 +7,5 @@ export default new Command({
   label: t('__COMMAND_TRANSLATE_TO_EN_LABEL'),
   text: t('__COMMAND_TRANSLATE_TO_EN_TEXT'),
   prompt: t('__COMMAND_TRANSLATE_TO_EN_PROMPT'),
-  aliases: [
-    '/translate-to-en',
-    'Translate to English',
-    'Translate to EN',
-  ],
+  aliases: ['/translate-to-en', 'Translate to English', 'Translate to EN'],
 });

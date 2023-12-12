@@ -5,27 +5,36 @@ import {
   isUserExist,
   getTrialRemainingPrompts,
   firstTimeGrantTrialPrompts,
-  manageTrialPrompts
+  manageTrialPrompts,
 } from '../db/service/user-service';
 import { replyMessage } from '../utils/index';
 import { t } from '../locales/index';
 import { Request, Response, NextFunction } from 'express';
 
-const authLineUser = async (req: Request, res: Response, next: NextFunction) => {
+const authLineUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   let context: Context | null = null;
   await Promise.all(
     req.body.events
-      .map((event: {
-        type: string,
-        replyToken: string,
-        source: any,
-        message: any,
-      }) => new Event(event))
+      .map(
+        (event: {
+          type: string;
+          replyToken: string;
+          source: any;
+          message: any;
+        }) => new Event(event),
+      )
       .filter((event: Event) => event.isMessage)
       .filter((event: Event) => event.isText || event.isAudio)
       .map((event: Event) => new Context(event))
-      .map((ctx: Context) => {ctx.initialize(); context=ctx}),
-  )
+      .map((ctx: Context) => {
+        ctx.initialize();
+        context = ctx;
+      }),
+  );
   if (!context) {
     next();
     return;

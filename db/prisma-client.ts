@@ -18,8 +18,8 @@ async function getPrisma(): Promise<PrismaClient> {
 /**
  * Implements a simple lock to prevent multiple instances of PrismaClient
  * especially under high concurrency.
- * @param {function} task 
- * @returns 
+ * @param {function} task
+ * @returns
  */
 
 let lock: boolean = false;
@@ -31,7 +31,9 @@ async function synchronized(task: () => Promise<any>): Promise<any> {
     lock = false;
     return result;
   } else {
-    return new Promise(resolve => setImmediate(() => resolve(synchronized(task))));
+    return new Promise((resolve) =>
+      setImmediate(() => resolve(synchronized(task))),
+    );
   }
 }
 

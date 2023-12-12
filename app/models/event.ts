@@ -21,10 +21,10 @@ class Event {
     source,
     message,
   }: {
-    type: string,
-    replyToken: string,
-    source: any,
-    message: any,
+    type: string;
+    replyToken: string;
+    source: any;
+    message: any;
   }) {
     this.type = type;
     this.replyToken = replyToken;

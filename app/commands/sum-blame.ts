@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_BLAME_LABEL'),
   text: t('__COMMAND_SUM_BLAME_TEXT'),
   prompt: t('__COMMAND_SUM_BLAME_PROMPT'),
-  aliases: [
-    '/blame',
-    'Blame',
-  ],
+  aliases: ['/blame', 'Blame'],
 });

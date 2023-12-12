@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_ANALYZE_ANALYZE_LABEL'),
   text: t('__COMMAND_ANALYZE_ANALYZE_TEXT'),
   prompt: t('__COMMAND_ANALYZE_ANALYZE_PROMPT'),
-  aliases: [
-    '/analyze',
-    'Analyze',
-  ],
+  aliases: ['/analyze', 'Analyze'],
 });

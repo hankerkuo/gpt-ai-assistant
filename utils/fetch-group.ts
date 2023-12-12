@@ -6,9 +6,7 @@ import { fetchGroupSummary } from '../services/line';
 class Group {
   groupName: string;
 
-  constructor({
-    groupName,
-  }: {groupName: string}) {
+  constructor({ groupName }: { groupName: string }) {
     this.groupName = groupName;
   }
 }

@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_ANALYZE_NUMEROLOGICALLY_LABEL'),
   text: t('__COMMAND_ANALYZE_NUMEROLOGICALLY_TEXT'),
   prompt: t('__COMMAND_ANALYZE_NUMEROLOGICALLY_PROMPT'),
-  aliases: [
-    '/analyze-numerologically',
-    'Analyze numerologically',
-  ],
+  aliases: ['/analyze-numerologically', 'Analyze numerologically'],
 });

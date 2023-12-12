@@ -1,7 +1,4 @@
-import {
-  COMMAND_SYS_REPORT_FINISH,
-  GENERAL_COMMANDS,
-} from '../commands/index';
+import { COMMAND_SYS_REPORT_FINISH, GENERAL_COMMANDS } from '../commands/index';
 import Context from '../context';
 import { updateHistory } from '../history/index';
 import { getChatMode } from '../../db/service/chat-mode-service';
@@ -12,10 +9,9 @@ import logger from '../../utils/logger';
  * @param {Context} context
  * @returns {boolean}
  */
-const inReportMode = async (context: Context) =>{
+const inReportMode = async (context: Context) => {
   return (await getChatMode(context.id)) === 'REPORT';
-}
-  
+};
 
 /**
  * @param {Context} context

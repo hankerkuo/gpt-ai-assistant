@@ -25,16 +25,12 @@ const removePrompt = (userId: string) => {
 
 const printPrompts = () => {
   if (Array.from(prompts.keys()).length < 1) return;
-  const content = Array.from(prompts.keys()).map((userId) => `\n=== ${userId.slice(0, 6)} ===\n${getPrompt(userId)}\n`).join('');
+  const content = Array.from(prompts.keys())
+    .map((userId) => `\n=== ${userId.slice(0, 6)} ===\n${getPrompt(userId)}\n`)
+    .join('');
   console.info(content);
 };
 
-export {
-  Prompt,
-  getPrompt,
-  setPrompt,
-  removePrompt,
-  printPrompts,
-};
+export { Prompt, getPrompt, setPrompt, removePrompt, printPrompts };
 
 export default prompts;

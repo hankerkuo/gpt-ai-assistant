@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_ANALYZE_PHILOSOPHICALLY_LABEL'),
   text: t('__COMMAND_ANALYZE_PHILOSOPHICALLY_TEXT'),
   prompt: t('__COMMAND_ANALYZE_PHILOSOPHICALLY_PROMPT'),
-  aliases: [
-    '/analyze-philosophically',
-    'Analyze philosophically',
-  ],
+  aliases: ['/analyze-philosophically', 'Analyze philosophically'],
 });

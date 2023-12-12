@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SYS_DOC_LABEL'),
   text: t('__COMMAND_SYS_DOC_TEXT'),
   reply: t('__COMMAND_SYS_DOC_REPLY'),
-  aliases: [
-    '/doc',
-    'Doc',
-  ],
+  aliases: ['/doc', 'Doc'],
 });

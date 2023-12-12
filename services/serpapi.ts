@@ -29,16 +29,19 @@ const search = ({
   lr = config.SERPAPI_LOCATION,
   location = config.SERPAPI_LOCATION,
   q,
-}: {lr?: string, location?: string, q: any}) => client.get('/search', {
-  params: {
-    lr,
-    location,
-    q,
-  },
-});
+}: {
+  lr?: string;
+  location?: string;
+  q: any;
+}) =>
+  client.get('/search', {
+    params: {
+      lr,
+      location,
+      q,
+    },
+  });
 
-export {
-  search,
-};
+export { search };
 
 export default null;

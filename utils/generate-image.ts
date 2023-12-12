@@ -5,11 +5,7 @@ import { createImage } from '../services/openai';
 class Image {
   url: string;
 
-  constructor({
-    url,
-  }: {
-    url: string;
-  }) {
+  constructor({ url }: { url: string }) {
     this.url = url;
   }
 }

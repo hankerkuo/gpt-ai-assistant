@@ -4,19 +4,24 @@ const ja = {
   __COMMAND_ANALYZE_ANALYZE_PROMPT: '以下の内容を詳しく分析してください。',
   __COMMAND_ANALYZE_LITERARILY_LABEL: '文学的に分析して',
   __COMMAND_ANALYZE_LITERARILY_TEXT: '文学的に分析して',
-  __COMMAND_ANALYZE_LITERARILY_PROMPT: '以下の内容を文学的に詳しく分析してください。',
+  __COMMAND_ANALYZE_LITERARILY_PROMPT:
+    '以下の内容を文学的に詳しく分析してください。',
   __COMMAND_ANALYZE_MATHEMATICALLY_LABEL: '数学的に分析して',
   __COMMAND_ANALYZE_MATHEMATICALLY_TEXT: '数学的に分析して',
-  __COMMAND_ANALYZE_MATHEMATICALLY_PROMPT: '以下の内容を数学的に詳しく分析してください。',
+  __COMMAND_ANALYZE_MATHEMATICALLY_PROMPT:
+    '以下の内容を数学的に詳しく分析してください。',
   __COMMAND_ANALYZE_NUMEROLOGICALLY_LABEL: '算命学的に分析して',
   __COMMAND_ANALYZE_NUMEROLOGICALLY_TEXT: '算命学的に分析して',
-  __COMMAND_ANALYZE_NUMEROLOGICALLY_PROMPT: '以下の内容を算命学的に詳しく分析してください。',
+  __COMMAND_ANALYZE_NUMEROLOGICALLY_PROMPT:
+    '以下の内容を算命学的に詳しく分析してください。',
   __COMMAND_ANALYZE_PHILOSOPHICALLY_LABEL: '哲学的に分析して',
   __COMMAND_ANALYZE_PHILOSOPHICALLY_TEXT: '哲学的に分析して',
-  __COMMAND_ANALYZE_PHILOSOPHICALLY_PROMPT: '以下の内容を哲学的に詳しく分析してください。',
+  __COMMAND_ANALYZE_PHILOSOPHICALLY_PROMPT:
+    '以下の内容を哲学的に詳しく分析してください。',
   __COMMAND_ANALYZE_PSYCHOLOGICALLY_LABEL: '心理学的に分析して',
   __COMMAND_ANALYZE_PSYCHOLOGICALLY_TEXT: '心理学的に分析して',
-  __COMMAND_ANALYZE_PSYCHOLOGICALLY_PROMPT: '以下の内容を心理学的に詳しく分析してください。',
+  __COMMAND_ANALYZE_PSYCHOLOGICALLY_PROMPT:
+    '以下の内容を心理学的に詳しく分析してください。',
   __COMMAND_BOT_ACTIVATE_LABEL: '自動応答をオンにする',
   __COMMAND_BOT_ACTIVATE_TEXT: '自動応答をオンにする',
   __COMMAND_BOT_ACTIVATE_ALIASES: [],
@@ -57,7 +62,8 @@ const ja = {
   __COMMAND_SUM_ADVISE_PROMPT: '以下の内容を要約し、いいアドバイスをください。',
   __COMMAND_SUM_APOLOGIZE_LABEL: '謝って',
   __COMMAND_SUM_APOLOGIZE_TEXT: '謝って',
-  __COMMAND_SUM_APOLOGIZE_PROMPT: '以下の内容を要約し、ちゃんと謝ってください。',
+  __COMMAND_SUM_APOLOGIZE_PROMPT:
+    '以下の内容を要約し、ちゃんと謝ってください。',
   __COMMAND_SUM_BLAME_LABEL: '責めて',
   __COMMAND_SUM_BLAME_TEXT: '責めて',
   __COMMAND_SUM_BLAME_PROMPT: '以下の内容を要約し、強く非難してください。',
@@ -69,7 +75,8 @@ const ja = {
   __COMMAND_SUM_ENCOURAGE_PROMPT: '以下の内容を要約し、熱心に励んでください。',
   __COMMAND_SUM_COMPLAIN_LABEL: '愚痴を言って',
   __COMMAND_SUM_COMPLAIN_TEXT: '愚痴を言って',
-  __COMMAND_SUM_COMPLAIN_PROMPT: '以下の内容を要約し、軽く愚痴を言ってください。',
+  __COMMAND_SUM_COMPLAIN_PROMPT:
+    '以下の内容を要約し、軽く愚痴を言ってください。',
   __COMMAND_SUM_LAUGH_LABEL: '笑って',
   __COMMAND_SUM_LAUGH_TEXT: '笑って',
   __COMMAND_SUM_LAUGH_PROMPT: '以下の内容を要約し、面白く笑ってください。',
@@ -91,7 +98,8 @@ const ja = {
   __COMMAND_SYS_REPORT_FINISH_REPLY: 'Your report has been sent. Thank you.',
   __COMMAND_SYS_VERSION_LABEL: 'バージョン',
   __COMMAND_SYS_VERSION_TEXT: 'バージョン',
-  __COMMAND_SYS_VERSION_REPLY: (version: string, isLatest: string) => `Your version is ${isLatest ? 'up-to-date' : version}.`,
+  __COMMAND_SYS_VERSION_REPLY: (version: string, isLatest: string) =>
+    `Your version is ${isLatest ? 'up-to-date' : version}.`,
   __COMMAND_TRANSLATE_TO_EN_LABEL: '翻成英文', // TODO
   __COMMAND_TRANSLATE_TO_EN_TEXT: '翻成英文', // TODO
   __COMMAND_TRANSLATE_TO_EN_PROMPT: '請將以下內容翻譯成英文。', // TODO
@@ -99,21 +107,29 @@ const ja = {
   __COMMAND_TRANSLATE_TO_JA_TEXT: '翻成日文', // TODO
   __COMMAND_TRANSLATE_TO_JA_PROMPT: '請將以下內容翻譯成日文。', // TODO
   __COMPLETION_DEFAULT_SYSTEM_PROMPT: '', // TODO
-  __COMPLETION_DEFAULT_HUMAN_PROMPT: (name: string) => (name ? `私は${name}です` : 'こんにちは'),
-  __COMPLETION_DEFAULT_AI_PROMPT: (name: string) => (name ? `私は${name}です` : 'こんにちは'),
-  __COMPLETION_DEFAULT_AI_TONE: (tone: string) => (tone ? `以${tone}的語氣回應我：` : ''), // TODO
-  __COMPLETION_SEARCH: (a: string, q: string) => `根據「${a}」查詢結果，回答「${q}」問題`, // TODO
+  __COMPLETION_DEFAULT_HUMAN_PROMPT: (name: string) =>
+    name ? `私は${name}です` : 'こんにちは',
+  __COMPLETION_DEFAULT_AI_PROMPT: (name: string) =>
+    name ? `私は${name}です` : 'こんにちは',
+  __COMPLETION_DEFAULT_AI_TONE: (tone: string) =>
+    tone ? `以${tone}的語氣回應我：` : '', // TODO
+  __COMPLETION_SEARCH: (a: string, q: string) =>
+    `根據「${a}」查詢結果，回答「${q}」問題`, // TODO
   __COMPLETION_SEARCH_NOT_FOUND: '查無資料', // TODO
   __COMPLETION_QUOTATION_MARK_OPENING: '「',
   __COMPLETION_QUOTATION_MARK_CLOSING: '」',
   __ERROR_ECONNABORTED: '接続がタイムアウトしました。',
-  __ERROR_SYSTEM_UNSTABLE: 'System unstable, please try again later, or reply "Report" to report any issues',
+  __ERROR_SYSTEM_UNSTABLE:
+    'System unstable, please try again later, or reply "Report" to report any issues',
   __ERROR_MAX_GROUPS_REACHED: '最大ユーザー数に達しています。',
   __ERROR_MAX_USERS_REACHED: '最大グループ数に達しています。',
   __ERROR_MISSING_ENV: (v: string) => `「${v}」環境変数が見つかりません。`,
-  __MESSAGE_NEW_VERSION_AVAILABLE: (version: string) => `A new version ${version} is now available!`,
-  __MESSAGE_GREETING_WORDS: 'Greetings! From now on you can use this bot for 10 questions every day!',
-  __MESSAGE_QUOTA_EXCEEDED: 'You have exceeded the quota for today, please try again tomorrow.',
+  __MESSAGE_NEW_VERSION_AVAILABLE: (version: string) =>
+    `A new version ${version} is now available!`,
+  __MESSAGE_GREETING_WORDS:
+    'Greetings! From now on you can use this bot for 10 questions every day!',
+  __MESSAGE_QUOTA_EXCEEDED:
+    'You have exceeded the quota for today, please try again tomorrow.',
   __SOURCE_NAME_SOME_GROUP: 'あるグループ',
   __SOURCE_NAME_SOMEONE: 'あるユーザー',
 };

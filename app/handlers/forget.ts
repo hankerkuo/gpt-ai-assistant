@@ -13,13 +13,13 @@ const check = (context: Context) => context.hasCommand(COMMAND_BOT_FORGET);
  * @param {Context} context
  * @returns {Promise<Context>}
  */
-const exec = (context: Context) => check(context) && (
-  async () => {
+const exec = (context: Context) =>
+  check(context) &&
+  (async () => {
     removePrompt(context.userId);
     removeHistory(context.userId);
     context.pushText(COMMAND_BOT_FORGET.reply);
     return context;
-  }
-)();
+  })();
 
 export default exec;

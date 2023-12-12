@@ -11,8 +11,6 @@ const locales = {
 
 const t = (key: any) => locales[config.APP_LANG][key];
 
-export {
-  t,
-};
+export { t };
 
 export default null;

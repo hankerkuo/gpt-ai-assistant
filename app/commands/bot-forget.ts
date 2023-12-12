@@ -7,9 +7,5 @@ export default new Command({
   label: t('__COMMAND_BOT_FORGET_LABEL'),
   text: t('__COMMAND_BOT_FORGET_TEXT'),
   reply: t('__COMMAND_BOT_FORGET_REPLY'),
-  aliases: [
-    ...t('__COMMAND_BOT_FORGET_ALIASES'),
-    '/forget',
-    'Forget',
-  ],
+  aliases: [...t('__COMMAND_BOT_FORGET_ALIASES'), '/forget', 'Forget'],
 });

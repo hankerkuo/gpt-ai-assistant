@@ -1,5 +1,9 @@
 import config from '../config/index';
-import { createEnvironment, ENV_TYPE_PLAIN, updateEnvironment } from '../services/vercel';
+import {
+  createEnvironment,
+  ENV_TYPE_PLAIN,
+  updateEnvironment,
+} from '../services/vercel';
 import { fetchEnvironment } from '../utils/index';
 import { Source } from '../app/models';
 
@@ -8,7 +12,7 @@ const ENV_KEY = 'APP_STORAGE';
 class Storage {
   env: any;
 
-  data: {[key: string]: any} = {};
+  data: { [key: string]: any } = {};
 
   async initialize() {
     if (!config.VERCEL_ACCESS_TOKEN) return;
@@ -36,7 +40,7 @@ class Storage {
    * @param {string} key
    * @param {string} value
    */
-  async setItem(key: string, value: {[key: string]: Source}) {
+  async setItem(key: string, value: { [key: string]: Source }) {
     this.data[key] = value;
     if (!config.VERCEL_ACCESS_TOKEN) return;
     await updateEnvironment({

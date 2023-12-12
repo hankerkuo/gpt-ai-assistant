@@ -1,5 +1,8 @@
 import { getPrisma } from '../prisma-client';
-import { isDifferenceGreaterThanOneDay, createToday8amDate } from '../../utils/date-compare';
+import {
+  isDifferenceGreaterThanOneDay,
+  createToday8amDate,
+} from '../../utils/date-compare';
 import { PrismaClient } from '@prisma/client';
 
 export async function isUserExist(userId: string) {
@@ -114,7 +117,7 @@ export async function manageTrialPrompts(userId: string) {
   if (
     isDifferenceGreaterThanOneDay(
       new Date(),
-      new Date(query.TRIAL_PROMPT_LAST_RENEW)
+      new Date(query.TRIAL_PROMPT_LAST_RENEW),
     )
   ) {
     await updateTrialPrompts(userId, query.PROMPT_GRANT_PER_DAY);

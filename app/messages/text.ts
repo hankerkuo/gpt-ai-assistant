@@ -8,7 +8,9 @@ class TextMessage extends Message {
 
   constructor({
     text, // Add type annotation for 'text' parameter
-  }: { text: string }) {
+  }: {
+    text: string;
+  }) {
     super();
     this.text = text;
   }

@@ -6,8 +6,5 @@ export default new Command({
   type: TYPE_SYSTEM,
   label: t('__COMMAND_SYS_COMMAND_LABEL'),
   text: t('__COMMAND_SYS_COMMAND_TEXT'),
-  aliases: [
-    '/command',
-    'Command',
-  ],
+  aliases: ['/command', 'Command'],
 });

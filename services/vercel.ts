@@ -1,19 +1,19 @@
-import axios from "axios";
-import config from "../config/index";
-import { handleFulfilled, handleRejected, handleRequest } from "./utils/index";
+import axios from 'axios';
+import config from '../config/index';
+import { handleFulfilled, handleRejected, handleRequest } from './utils/index';
 
-export const ENV_TYPE_ENCRYPTED = "encrypted";
-export const ENV_TYPE_PLAIN = "plain";
+export const ENV_TYPE_ENCRYPTED = 'encrypted';
+export const ENV_TYPE_PLAIN = 'plain';
 
-export const ENV_TARGET_PRODUCTION = "production";
-export const ENV_TARGET_PREVIEW = "preview";
-export const ENV_TARGET_DEVELOPMENT = "development";
+export const ENV_TARGET_PRODUCTION = 'production';
+export const ENV_TARGET_PREVIEW = 'preview';
+export const ENV_TARGET_DEVELOPMENT = 'development';
 
 const client = axios.create({
-  baseURL: "https://api.vercel.com",
+  baseURL: 'https://api.vercel.com',
   timeout: Number(config.VERCEL_TIMEOUT),
   headers: {
-    "Accept-Encoding": "gzip, deflate, compress",
+    'Accept-Encoding': 'gzip, deflate, compress',
   },
 });
 
@@ -60,7 +60,7 @@ const createEnvironment = ({
       params: {
         ...(config.VERCEL_TEAM_ID ? { teamId: config.VERCEL_TEAM_ID } : {}),
       },
-    }
+    },
   );
 
 const updateEnvironment = ({
@@ -85,9 +85,9 @@ const updateEnvironment = ({
       params: {
         ...(config.VERCEL_TEAM_ID ? { teamId: config.VERCEL_TEAM_ID } : {}),
       },
-    }
+    },
   );
 
-const deploy = () => axios.post(config.VERCEL_DEPLOY_HOOK_URL ?? "");
+const deploy = () => axios.post(config.VERCEL_DEPLOY_HOOK_URL ?? '');
 
 export { fetchEnvironments, createEnvironment, updateEnvironment, deploy };

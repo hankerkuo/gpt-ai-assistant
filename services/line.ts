@@ -1,25 +1,25 @@
-import axios from "axios";
-import config from "../config/index";
-import { handleFulfilled, handleRejected, handleRequest } from "./utils/index";
+import axios from 'axios';
+import config from '../config/index';
+import { handleFulfilled, handleRejected, handleRequest } from './utils/index';
 
-export const EVENT_TYPE_MESSAGE = "message";
-export const EVENT_TYPE_POSTBACK = "postback";
+export const EVENT_TYPE_MESSAGE = 'message';
+export const EVENT_TYPE_POSTBACK = 'postback';
 
-export const SOURCE_TYPE_USER = "user";
-export const SOURCE_TYPE_GROUP = "group";
+export const SOURCE_TYPE_USER = 'user';
+export const SOURCE_TYPE_GROUP = 'group';
 
-export const MESSAGE_TYPE_TEXT = "text";
-export const MESSAGE_TYPE_STICKER = "sticker";
-export const MESSAGE_TYPE_AUDIO = "audio";
-export const MESSAGE_TYPE_IMAGE = "image";
-export const MESSAGE_TYPE_TEMPLATE = "template";
+export const MESSAGE_TYPE_TEXT = 'text';
+export const MESSAGE_TYPE_STICKER = 'sticker';
+export const MESSAGE_TYPE_AUDIO = 'audio';
+export const MESSAGE_TYPE_IMAGE = 'image';
+export const MESSAGE_TYPE_TEMPLATE = 'template';
 
-export const TEMPLATE_TYPE_BUTTONS = "buttons";
+export const TEMPLATE_TYPE_BUTTONS = 'buttons';
 
-export const ACTION_TYPE_MESSAGE = "message";
-export const ACTION_TYPE_POSTBACK = "postback";
+export const ACTION_TYPE_MESSAGE = 'message';
+export const ACTION_TYPE_POSTBACK = 'postback';
 
-export const QUICK_REPLY_TYPE_ACTION = "action";
+export const QUICK_REPLY_TYPE_ACTION = 'action';
 
 type TReplyParam = {
   replyToken: any;
@@ -27,10 +27,10 @@ type TReplyParam = {
 };
 
 const client = axios.create({
-  baseURL: "https://api.line.me",
+  baseURL: 'https://api.line.me',
   timeout: Number(config.LINE_TIMEOUT),
   headers: {
-    "Accept-Encoding": "gzip, deflate, compress",
+    'Accept-Encoding': 'gzip, deflate, compress',
   },
 });
 
@@ -48,7 +48,7 @@ client.interceptors.response.use(handleFulfilled, (err) => {
 });
 
 const reply = ({ replyToken, messages }: TReplyParam) =>
-  client.post("/v2/bot/message/reply", {
+  client.post('/v2/bot/message/reply', {
     replyToken,
     messages,
   });
@@ -60,10 +60,10 @@ const fetchProfile = ({ userId }: { userId: string }) =>
   client.get(`/v2/bot/profile/${userId}`);
 
 const dataClient = axios.create({
-  baseURL: "https://api-data.line.me",
+  baseURL: 'https://api-data.line.me',
   timeout: Number(config.LINE_TIMEOUT),
   headers: {
-    "Accept-Encoding": "gzip, deflate, compress",
+    'Accept-Encoding': 'gzip, deflate, compress',
   },
 });
 
@@ -82,7 +82,7 @@ dataClient.interceptors.response.use(handleFulfilled, (err) => {
 
 const fetchContent = ({ messageId }: { messageId: string }) =>
   dataClient.get(`/v2/bot/message/${messageId}/content`, {
-    responseType: "arraybuffer",
+    responseType: 'arraybuffer',
   });
 
 export { reply, fetchGroupSummary, fetchProfile, fetchContent };

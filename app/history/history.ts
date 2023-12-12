@@ -14,7 +14,9 @@ class History {
    * @returns {Message}
    */
   get lastMessage() {
-    return this.messages.length > 0 ? this.messages[this.messages.length - 1] : null;
+    return this.messages.length > 0
+      ? this.messages[this.messages.length - 1]
+      : null;
   }
 
   get tokenCount() {

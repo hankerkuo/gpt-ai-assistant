@@ -1,4 +1,8 @@
-import { TYPE_ANALYZE, TYPE_SUM, TYPE_TRANSLATE } from '../../constants/command';
+import {
+  TYPE_ANALYZE,
+  TYPE_SUM,
+  TYPE_TRANSLATE,
+} from '../../constants/command';
 import COMMAND_ANALYZE_ANALYZE from './analyze-analyze';
 import COMMAND_ANALYZE_LITERARILY from './analyze-literarily';
 import COMMAND_ANALYZE_MATHEMATICALLY from './analyze-mathematically';
@@ -89,11 +93,10 @@ export const GENERAL_COMMANDS = [
   COMMAND_SYS_DEPLOY,
 ];
 
-export const ENQUIRE_COMMANDS = ALL_COMMANDS.filter(({ type }) => (
-  type === TYPE_SUM
-  || type === TYPE_ANALYZE
-  || type === TYPE_TRANSLATE
-));
+export const ENQUIRE_COMMANDS = ALL_COMMANDS.filter(
+  ({ type }) =>
+    type === TYPE_SUM || type === TYPE_ANALYZE || type === TYPE_TRANSLATE,
+);
 
 export {
   COMMAND_ANALYZE_ANALYZE,

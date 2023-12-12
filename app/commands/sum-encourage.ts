@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_ENCOURAGE_LABEL'),
   text: t('__COMMAND_SUM_ENCOURAGE_TEXT'),
   prompt: t('__COMMAND_SUM_ENCOURAGE_PROMPT'),
-  aliases: [
-    '/encourage',
-    'Encourage',
-  ],
+  aliases: ['/encourage', 'Encourage'],
 });

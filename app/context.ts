@@ -3,7 +3,10 @@ import fs from 'fs';
 import config from '../config/index';
 import { t } from '../locales/index';
 import {
-  MESSAGE_TYPE_IMAGE, MESSAGE_TYPE_TEXT, SOURCE_TYPE_GROUP, SOURCE_TYPE_USER,
+  MESSAGE_TYPE_IMAGE,
+  MESSAGE_TYPE_TEXT,
+  SOURCE_TYPE_GROUP,
+  SOURCE_TYPE_USER,
 } from '../services/line';
 import {
   addMark,
@@ -12,12 +15,15 @@ import {
   fetchGroup,
   fetchUser,
   generateTranscription,
-  logger
+  logger,
 } from '../utils/index';
 import { Command, COMMAND_BOT_RETRY } from './commands/index';
 import { updateHistory } from './history/index';
 import {
-  ImageMessage, Message, TemplateMessage, TextMessage,
+  ImageMessage,
+  Message,
+  TemplateMessage,
+  TextMessage,
 } from './messages/index';
 import { Bot, Event, Source } from './models/index';
 import { getSources, setSources } from './repository/index';
@@ -81,7 +87,10 @@ class Context {
    */
   get trimmedText() {
     if (this.event.isText) {
-      const text = this.event.text.replaceAll('　', ' ').replace(config.BOT_NAME, '').trim();
+      const text = this.event.text
+        .replaceAll('　', ' ')
+        .replace(config.BOT_NAME, '')
+        .trim();
       return addMark(text);
     }
     if (this.event.isAudio) {
@@ -117,7 +126,9 @@ class Context {
         return this.pushError(err);
       }
     }
-    updateHistory(this.id, (history) => history.write(this.source!.name, this.trimmedText));
+    updateHistory(this.id, (history) =>
+      history.write(this.source!.name, this.trimmedText),
+    );
     return this;
   }
 
@@ -126,9 +137,17 @@ class Context {
    */
   validate() {
     const sources = getSources();
-    const groups = Object.values(sources).filter((source: any) => source.type === SOURCE_TYPE_GROUP);
-    const users = Object.values(sources).filter((source: any) => source.type === SOURCE_TYPE_USER);
-    if (this.event.isGroup && !sources[this.groupId] && groups.length >= config.APP_MAX_GROUPS) {
+    const groups = Object.values(sources).filter(
+      (source: any) => source.type === SOURCE_TYPE_GROUP,
+    );
+    const users = Object.values(sources).filter(
+      (source: any) => source.type === SOURCE_TYPE_USER,
+    );
+    if (
+      this.event.isGroup &&
+      !sources[this.groupId] &&
+      groups.length >= config.APP_MAX_GROUPS
+    ) {
       throw new Error(t('__ERROR_MAX_GROUPS_REACHED'));
     }
     if (!sources[this.userId] && users.length >= config.APP_MAX_USERS) {
@@ -138,7 +157,7 @@ class Context {
 
   async register() {
     const sources = getSources();
-    const newSources: {[key: string]: Source} = {};
+    const newSources: { [key: string]: Source } = {};
     if (this.event.isGroup && !sources[this.groupId]) {
       const { groupName } = await fetchGroup(this.groupId);
       newSources[this.groupId] = new Source({
@@ -178,12 +197,10 @@ class Context {
    * @param {Array<string>} param.aliases
    * @returns {boolean}
    */
-  hasCommand({
-    text,
-    aliases,
-  }: {text: string, aliases: string[]}) {
+  hasCommand({ text, aliases }: { text: string; aliases: string[] }) {
     const content = this.trimmedText.toLowerCase();
-    if (aliases.some((alias) => content.startsWith(alias.toLowerCase()))) return true;
+    if (aliases.some((alias) => content.startsWith(alias.toLowerCase())))
+      return true;
     if (content.startsWith(text.toLowerCase())) return true;
     return false;
   }
@@ -248,7 +265,11 @@ class Context {
       return this.pushText(t('__ERROR_SYSTEM_UNSTABLE'), [COMMAND_BOT_RETRY]);
     }
     if (err.config?.baseURL) {
-      logger.error(`${err.config.method.toUpperCase()} ${err.config.baseURL}${err.config.url}`);
+      logger.error(
+        `${err.config.method.toUpperCase()} ${err.config.baseURL}${
+          err.config.url
+        }`,
+      );
     }
     if (err.response) {
       logger.error(`Request failed with status code ${err.response.status}`);

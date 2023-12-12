@@ -38,13 +38,12 @@ client.interceptors.response.use(handleFulfilled, (err) => {
   return handleRejected(err);
 });
 
-const createChatCompletion = ({
-  messages,
-}: {messages: any}) => client.post('/v1/chat/completions', {
-  model: 'gpt-3.5-turbo',
-  messages,
-  max_tokens: config.OPENAI_COMPLETION_MAX_TOKENS,
-});
+const createChatCompletion = ({ messages }: { messages: any }) =>
+  client.post('/v1/chat/completions', {
+    model: 'gpt-3.5-turbo',
+    messages,
+    max_tokens: config.OPENAI_COMPLETION_MAX_TOKENS,
+  });
 
 const createTextCompletion = ({
   model = config.OPENAI_COMPLETION_MODEL,
@@ -53,10 +52,7 @@ const createTextCompletion = ({
   maxTokens = config.OPENAI_COMPLETION_MAX_TOKENS,
   frequencyPenalty = config.OPENAI_COMPLETION_FREQUENCY_PENALTY,
   presencePenalty = config.OPENAI_COMPLETION_PRESENCE_PENALTY,
-  stop = [
-    ` ${ROLE_AI}:`,
-    ` ${ROLE_HUMAN}:`,
-  ],
+  stop = [` ${ROLE_AI}:`, ` ${ROLE_HUMAN}:`],
 }: {
   model?: string;
   prompt: string;
@@ -65,15 +61,16 @@ const createTextCompletion = ({
   frequencyPenalty?: number;
   presencePenalty?: number;
   stop?: string[];
-}) => client.post('/v1/completions', {
-  model,
-  prompt,
-  temperature,
-  max_tokens: maxTokens,
-  frequency_penalty: frequencyPenalty,
-  presence_penalty: presencePenalty,
-  stop,
-});
+}) =>
+  client.post('/v1/completions', {
+    model,
+    prompt,
+    temperature,
+    max_tokens: maxTokens,
+    frequency_penalty: frequencyPenalty,
+    presence_penalty: presencePenalty,
+    stop,
+  });
 
 const createImage = ({
   prompt,
@@ -83,11 +80,12 @@ const createImage = ({
   prompt: string;
   n?: number;
   size?: string;
-}) => client.post('/v1/images/generations', {
-  prompt,
-  n,
-  size,
-});
+}) =>
+  client.post('/v1/images/generations', {
+    prompt,
+    n,
+    size,
+  });
 
 const createAudioTranscriptions = ({
   buffer,

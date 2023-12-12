@@ -1,11 +1,14 @@
 /**
- * 
- * @param {Date} date1 
- * @param {Date} date2 
+ *
+ * @param {Date} date1
+ * @param {Date} date2
  * @returns {boolean}
  */
 
-export function isDifferenceGreaterThanOneDay(date1: Date, date2: Date): boolean {
+export function isDifferenceGreaterThanOneDay(
+  date1: Date,
+  date2: Date,
+): boolean {
   const timestamp1 = date1.getTime();
   const timestamp2 = date2.getTime();
   const difference = Math.abs(timestamp2 - timestamp1);

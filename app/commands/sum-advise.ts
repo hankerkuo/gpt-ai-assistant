@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_SUM_ADVISE_LABEL'),
   text: t('__COMMAND_SUM_ADVISE_TEXT'),
   prompt: t('__COMMAND_SUM_ADVISE_PROMPT'),
-  aliases: [
-    '/advise',
-    'Advise',
-  ],
+  aliases: ['/advise', 'Advise'],
 });

@@ -20,5 +20,5 @@ export async function getChatMode(userId: string) {
       USER_ID: userId,
     },
   });
-  return query ? query.CHAT_MODE: '';
+  return query ? query.CHAT_MODE : '';
 }

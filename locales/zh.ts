@@ -4,19 +4,24 @@ const zh = {
   __COMMAND_ANALYZE_ANALYZE_PROMPT: '分析以下內容，並給予細節。',
   __COMMAND_ANALYZE_LITERARILY_LABEL: '文學分析',
   __COMMAND_ANALYZE_LITERARILY_TEXT: '文學分析',
-  __COMMAND_ANALYZE_LITERARILY_PROMPT: '使用文學的角度分析以下內容，並給予細節。',
+  __COMMAND_ANALYZE_LITERARILY_PROMPT:
+    '使用文學的角度分析以下內容，並給予細節。',
   __COMMAND_ANALYZE_MATHEMATICALLY_LABEL: '數學分析',
   __COMMAND_ANALYZE_MATHEMATICALLY_TEXT: '數學分析',
-  __COMMAND_ANALYZE_MATHEMATICALLY_PROMPT: '使用數學的角度分析以下內容，並給予細節。',
+  __COMMAND_ANALYZE_MATHEMATICALLY_PROMPT:
+    '使用數學的角度分析以下內容，並給予細節。',
   __COMMAND_ANALYZE_NUMEROLOGICALLY_LABEL: '命理學分析',
   __COMMAND_ANALYZE_NUMEROLOGICALLY_TEXT: '命理學分析',
-  __COMMAND_ANALYZE_NUMEROLOGICALLY_PROMPT: '使用命理學的角度分析以下內容，並給予細節。',
+  __COMMAND_ANALYZE_NUMEROLOGICALLY_PROMPT:
+    '使用命理學的角度分析以下內容，並給予細節。',
   __COMMAND_ANALYZE_PHILOSOPHICALLY_LABEL: '哲學分析',
   __COMMAND_ANALYZE_PHILOSOPHICALLY_TEXT: '哲學分析',
-  __COMMAND_ANALYZE_PHILOSOPHICALLY_PROMPT: '使用哲學的角度分析以下內容，並給予細節。',
+  __COMMAND_ANALYZE_PHILOSOPHICALLY_PROMPT:
+    '使用哲學的角度分析以下內容，並給予細節。',
   __COMMAND_ANALYZE_PSYCHOLOGICALLY_LABEL: '心理學分析',
   __COMMAND_ANALYZE_PSYCHOLOGICALLY_TEXT: '心理學分析',
-  __COMMAND_ANALYZE_PSYCHOLOGICALLY_PROMPT: '使用心理學的角度分析以下內容，並給予細節。',
+  __COMMAND_ANALYZE_PSYCHOLOGICALLY_PROMPT:
+    '使用心理學的角度分析以下內容，並給予細節。',
   __COMMAND_BOT_ACTIVATE_LABEL: '開啟自動回覆',
   __COMMAND_BOT_ACTIVATE_TEXT: '開啟自動回覆',
   __COMMAND_BOT_ACTIVATE_ALIASES: ['說話', '開始說話'],
@@ -91,7 +96,8 @@ const zh = {
   __COMMAND_SYS_REPORT_FINISH_REPLY: '已收到您的問題回報，謝謝。',
   __COMMAND_SYS_VERSION_LABEL: '檢查更新',
   __COMMAND_SYS_VERSION_TEXT: '版本',
-  __COMMAND_SYS_VERSION_REPLY: (version: string, isLatest: string) => `目前版本為 ${version}${isLatest ? '，已更新到最新版本' : ''}。`,
+  __COMMAND_SYS_VERSION_REPLY: (version: string, isLatest: string) =>
+    `目前版本為 ${version}${isLatest ? '，已更新到最新版本' : ''}。`,
   __COMMAND_TRANSLATE_TO_EN_LABEL: '翻成英文',
   __COMMAND_TRANSLATE_TO_EN_TEXT: '翻成英文',
   __COMMAND_TRANSLATE_TO_EN_PROMPT: '將以下內容翻譯成英文。',
@@ -99,19 +105,25 @@ const zh = {
   __COMMAND_TRANSLATE_TO_JA_TEXT: '翻成日文',
   __COMMAND_TRANSLATE_TO_JA_PROMPT: '將以下內容翻譯成日文。',
   __COMPLETION_DEFAULT_SYSTEM_PROMPT: '以下將使用繁體中文進行對話。',
-  __COMPLETION_DEFAULT_HUMAN_PROMPT: (name: string) => (name ? `我是${name}` : '哈囉'),
-  __COMPLETION_DEFAULT_AI_PROMPT: (name: string) => (name ? `我是${name}` : '哈囉'),
-  __COMPLETION_DEFAULT_AI_TONE: (tone: string) => (tone ? `以${tone}的語氣回應我：` : ''),
-  __COMPLETION_SEARCH: (a: string, q: string) => `根據「${a}」查詢結果，回答「${q}」問題`,
+  __COMPLETION_DEFAULT_HUMAN_PROMPT: (name: string) =>
+    name ? `我是${name}` : '哈囉',
+  __COMPLETION_DEFAULT_AI_PROMPT: (name: string) =>
+    name ? `我是${name}` : '哈囉',
+  __COMPLETION_DEFAULT_AI_TONE: (tone: string) =>
+    tone ? `以${tone}的語氣回應我：` : '',
+  __COMPLETION_SEARCH: (a: string, q: string) =>
+    `根據「${a}」查詢結果，回答「${q}」問題`,
   __COMPLETION_SEARCH_NOT_FOUND: '查無資料',
   __COMPLETION_QUOTATION_MARK_OPENING: '「',
   __COMPLETION_QUOTATION_MARK_CLOSING: '」',
   __ERROR_ECONNABORTED: '這個問題太複雜了',
-  __ERROR_SYSTEM_UNSTABLE: 'AI系統繁忙中，請稍後再試，若有疑問，可輸入"回報問題"',
+  __ERROR_SYSTEM_UNSTABLE:
+    'AI系統繁忙中，請稍後再試，若有疑問，可輸入"回報問題"',
   __ERROR_MAX_GROUPS_REACHED: '群組數量到達上限了',
   __ERROR_MAX_USERS_REACHED: '用戶數量到達上限了',
   __ERROR_MISSING_ENV: (v: string) => `缺少環境變數：${v}`,
-  __MESSAGE_NEW_VERSION_AVAILABLE: (version: string) => `最新版本為 ${version}，請從 GitHub 更新。`,
+  __MESSAGE_NEW_VERSION_AVAILABLE: (version: string) =>
+    `最新版本為 ${version}，請從 GitHub 更新。`,
   __MESSAGE_GREETING_WORDS: '歡迎使用AI聊天機器人! 已為您授權使用',
   __MESSAGE_QUOTA_EXCEEDED: '已達每日額度上限，請明天再試',
   __SOURCE_NAME_SOME_GROUP: '某群組',

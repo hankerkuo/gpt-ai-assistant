@@ -6,9 +6,5 @@ export default new Command({
   type: TYPE_SYSTEM,
   label: t('__COMMAND_BOT_TALK_LABEL'),
   text: t('__COMMAND_BOT_TALK_TEXT'),
-  aliases: [
-    ...t('__COMMAND_BOT_TALK_ALIASES'),
-    '/talk',
-    'Talk',
-  ],
+  aliases: [...t('__COMMAND_BOT_TALK_ALIASES'), '/talk', 'Talk'],
 });

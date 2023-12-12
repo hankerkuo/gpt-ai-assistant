@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_ANALYZE_PSYCHOLOGICALLY_LABEL'),
   text: t('__COMMAND_ANALYZE_PSYCHOLOGICALLY_TEXT'),
   prompt: t('__COMMAND_ANALYZE_PSYCHOLOGICALLY_PROMPT'),
-  aliases: [
-    '/analyze-psychologically',
-    'Analyze psychologically',
-  ],
+  aliases: ['/analyze-psychologically', 'Analyze psychologically'],
 });

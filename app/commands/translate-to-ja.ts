@@ -7,9 +7,5 @@ export default new Command({
   label: t('__COMMAND_TRANSLATE_TO_JA_LABEL'),
   text: t('__COMMAND_TRANSLATE_TO_JA_TEXT'),
   prompt: t('__COMMAND_TRANSLATE_TO_JA_PROMPT'),
-  aliases: [
-    '/translate-to-ja',
-    'Translate to Japanese',
-    'Translate to JA',
-  ],
+  aliases: ['/translate-to-ja', 'Translate to Japanese', 'Translate to JA'],
 });

@@ -18,8 +18,8 @@ export const mockUserPrivilege = (userId) => {
       const yesterday = new Date();
       yesterday.setTime(
         // subtract 25 hours
-        new Date().getTime() - 1000 * 3600 * 25
-      ); 
+        new Date().getTime() - 1000 * 3600 * 25,
+      );
       return {
         USER_ID: 'id_need_to_renew',
         TRIAL: 'Y',
@@ -30,7 +30,7 @@ export const mockUserPrivilege = (userId) => {
       const halfDayBefore = new Date();
       halfDayBefore.setTime(
         // subtract 12 hours
-        new Date().getTime() - 1000 * 3600 * 12
+        new Date().getTime() - 1000 * 3600 * 12,
       );
       return {
         USER_ID: 'id_no_need_to_renew',
@@ -41,4 +41,4 @@ export const mockUserPrivilege = (userId) => {
     default:
       return null;
   }
-}
+};

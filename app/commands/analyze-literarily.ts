@@ -7,8 +7,5 @@ export default new Command({
   label: t('__COMMAND_ANALYZE_LITERARILY_LABEL'),
   text: t('__COMMAND_ANALYZE_LITERARILY_TEXT'),
   prompt: t('__COMMAND_ANALYZE_LITERARILY_PROMPT'),
-  aliases: [
-    '/analyze-literarily',
-    'Analyze literarily',
-  ],
+  aliases: ['/analyze-literarily', 'Analyze literarily'],
 });

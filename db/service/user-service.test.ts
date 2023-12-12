@@ -66,7 +66,7 @@ describe('Test user service', () => {
         where: {
           USER_ID: 'id_need_to_renew',
         },
-      })
+      }),
     );
   });
 
