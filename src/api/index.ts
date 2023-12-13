@@ -1,3 +1,4 @@
+import 'module-alias/register';
 import express from 'express';
 import { handleEvents, printPrompts } from '@src/app/index';
 import config from '@src/config/index';
