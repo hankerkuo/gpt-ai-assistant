@@ -1,0 +1,59 @@
+import { encode } from 'gpt-3-encoder';
+import config from '@src/config/index';
+import { addMark } from '@src/utils/index';
+import Message from './message';
+
+const MAX_MESSAGES = config.APP_MAX_PROMPT_MESSAGES / 2;
+const MAX_TOKENS = config.APP_MAX_PROMPT_TOKENS / 2;
+
+//TODO: move the history to the database
+class History {
+  messages: Message[] = [];
+
+  /**
+   * @returns {Message}
+   */
+  get lastMessage() {
+    return this.messages.length > 0
+      ? this.messages[this.messages.length - 1]
+      : null;
+  }
+
+  get tokenCount() {
+    const encoded = encode(this.toString());
+    return encoded.length;
+  }
+
+  erase() {
+    if (this.messages.length > 0) {
+      this.messages.pop();
+    }
+    return this;
+  }
+
+  /**
+   * @param {string} role
+   * @param {string} content
+   */
+  write(role: string, content: string) {
+    if (this.messages.length >= MAX_MESSAGES || this.tokenCount >= MAX_TOKENS) {
+      this.messages.shift();
+    }
+    this.messages.push(new Message({ role, content: addMark(content) }));
+    return this;
+  }
+
+  /**
+   * @param {string} content
+   */
+  patch(content: string) {
+    if (this.messages.length < 1) return;
+    this.messages[this.messages.length - 1].content += content;
+  }
+
+  toString() {
+    return this.messages.map((record) => record.toString()).join('\n');
+  }
+}
+
+export default History;
