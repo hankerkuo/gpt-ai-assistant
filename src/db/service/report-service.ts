@@ -1,4 +1,3 @@
-import { PrismaClient } from '@prisma/client';
 import { getPrisma } from '../prisma-client';
 import { setChatMode } from './chat-mode-service';
 
@@ -15,7 +14,7 @@ export async function insertReport(userId: string, report: string) {
 
 export async function handleUserReport(userId: string, report: string) {
   const prismaClient = await getPrisma();
-  await prismaClient.$transaction(async (tx: PrismaClient) => {
+  await prismaClient.$transaction(async (tx) => {
     // set chat mode back to CHAT
     setChatMode(userId, 'CHAT');
     insertReport(userId, report);
