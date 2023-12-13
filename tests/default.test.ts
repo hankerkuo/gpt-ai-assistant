@@ -4,15 +4,15 @@ import {
   handleEvents,
   removePrompt,
   printHistories,
-} from '../app/index';
-import config from '../config/index';
+} from '../src/app/index';
+import config from '../src/config/index';
 import { createEvents, TIMEOUT, MOCK_USER_01, MOCK_TEXT_OK } from './utils';
 
-jest.mock('../db/service/user-service.js', () => ({
+jest.mock('../src/db/service/user-service', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../db/service/chat-mode-service.js', () => ({
+jest.mock('../src/db/service/chat-mode-service', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 
@@ -27,7 +27,7 @@ afterEach(() => {
 test(
   'DEFAULT',
   async () => {
-    const events = [...createEvents(['嗨！'])];
+    const events: any = [...createEvents(['嗨！'])];
     let results;
     try {
       results = await handleEvents(events);
@@ -36,7 +36,7 @@ test(
     }
     if (config.APP_DEBUG) printHistories();
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
-    const replies = results.map(({ messages }) =>
+    const replies = results!.map(({ messages }) =>
       messages.map(({ text }) => text),
     );
     expect(replies).toEqual([[MOCK_TEXT_OK]]);

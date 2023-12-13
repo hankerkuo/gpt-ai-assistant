@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
-import { COMMAND_SYS_COMMAND } from '../app/commands/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
+import { COMMAND_SYS_COMMAND } from '../src/app/commands/index';
 import { createEvents, TIMEOUT, MOCK_USER_01 } from './utils';
 
 beforeEach(() => {
@@ -14,7 +14,7 @@ afterEach(() => {
 test(
   'COMMAND_SYS_COMMAND',
   async () => {
-    const events = [...createEvents([`${COMMAND_SYS_COMMAND.text}`])];
+    const events: any = [...createEvents([`${COMMAND_SYS_COMMAND.text}`])];
     let results;
     try {
       results = await handleEvents(events);
@@ -22,7 +22,7 @@ test(
       console.error(err);
     }
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(3);
-    const replies = results.map(({ messages }) =>
+    const replies = results!.map(({ messages }) =>
       messages.map(({ altText }) => altText),
     );
     expect(replies).toEqual([[COMMAND_SYS_COMMAND.label]]);

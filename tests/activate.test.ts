@@ -7,11 +7,11 @@ import {
 import { t } from '../src/locales/index';
 import { createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT } from './utils';
 
-jest.mock('../src/db/service/user-service.ts', () => ({
+jest.mock('../src/db/service/user-service', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../src/db/service/chat-mode-service.ts', () => ({
+jest.mock('../src/db/service/chat-mode-service', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 

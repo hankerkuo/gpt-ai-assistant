@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
-import { COMMAND_BOT_TALK } from '../app/commands/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
+import { COMMAND_BOT_TALK } from '../src/app/commands/index';
 import { createEvents, TIMEOUT, MOCK_USER_01, MOCK_TEXT_OK } from './utils';
 
-jest.mock('../db/service/user-service.js', () => ({
+jest.mock('../src/db/service/user-service', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../db/service/chat-mode-service.js', () => ({
+jest.mock('../src/db/service/chat-mode-service', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 
@@ -22,7 +22,7 @@ afterEach(() => {
 test(
   'COMMAND_BOT_TALK',
   async () => {
-    const events = [...createEvents([`${COMMAND_BOT_TALK.text}人工智慧`])];
+    const events: any = [...createEvents([`${COMMAND_BOT_TALK.text}人工智慧`])];
     let results;
     try {
       results = await handleEvents(events);
@@ -30,7 +30,7 @@ test(
       console.error(err);
     }
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
-    const replies = results.map(({ messages }) =>
+    const replies = results!.map(({ messages }) =>
       messages.map(({ text }) => text),
     );
     expect(replies).toEqual([[MOCK_TEXT_OK]]);

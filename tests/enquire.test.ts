@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { COMMAND_BOT_TALK, COMMAND_SUM_SUM } from '../app/commands/index';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
-import { MOCK_GROUP_01 } from '../constants/mock';
+import { COMMAND_BOT_TALK, COMMAND_SUM_SUM } from '../src/app/commands/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
+import { MOCK_GROUP_01 } from '../src/constants/mock';
 import {
   createEvents,
   MOCK_TEXT_OK,
@@ -10,11 +10,11 @@ import {
   TIMEOUT,
 } from './utils';
 
-jest.mock('../db/service/user-service.js', () => ({
+jest.mock('../src/db/service/user-service', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../db/service/chat-mode-service.js', () => ({
+jest.mock('../src/db/service/chat-mode-service', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 
@@ -41,7 +41,7 @@ test(
     } catch (err) {
       console.error(err);
     }
-    const events = [
+    const events: any = [
       ...createEvents([`${COMMAND_SUM_SUM.text}`], MOCK_GROUP_01, MOCK_USER_02),
     ];
     let results;
@@ -52,7 +52,7 @@ test(
     }
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
     expect(getPrompt(MOCK_USER_02).messages.length).toEqual(6);
-    const replies = results.map(({ messages }) =>
+    const replies = results!.map(({ messages }) =>
       messages.map(({ text }) => text),
     );
     expect(replies).toEqual([[MOCK_TEXT_OK]]);

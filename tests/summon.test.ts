@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
-import config from '../config/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
+import config from '../src/config/index';
 import { createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT } from './utils';
 
-jest.mock('../db/service/user-service.js', () => ({
+jest.mock('../src/db/service/user-service', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../db/service/chat-mode-service.js', () => ({
+jest.mock('../src/db/service/chat-mode-service', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 
@@ -22,7 +22,7 @@ afterEach(() => {
 test(
   'COMMAND_BOT_SUMMON',
   async () => {
-    const events = [...createEvents([`${config.BOT_NAME} 你好`])];
+    const events: any = [...createEvents([`${config.BOT_NAME} 你好`])];
     let results;
     try {
       results = await handleEvents(events);
@@ -30,7 +30,7 @@ test(
       console.error(err);
     }
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
-    const replies = results.map(({ messages }) =>
+    const replies = results!.map(({ messages }) =>
       messages.map(({ text }) => text),
     );
     expect(replies).toEqual([[MOCK_TEXT_OK]]);
