@@ -58,7 +58,7 @@ export async function createUser(userId: string, name?: string) {
 
 export async function firstTimeGrantTrialPrompts(userId: string, num: number) {
   const prismaClient = await getPrisma();
-  await prismaClient.$transaction(async (prisma) => {
+  await prismaClient.$transaction(async (prisma: PrismaClient) => {
     if (!(await isUserExist(userId))) {
       await createUser(userId);
     }
