@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
-import { COMMAND_SYS_VERSION } from '../app/commands/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
+import { COMMAND_SYS_VERSION } from '../src/app/commands/index';
 import { t } from '../locales/index';
 import { fetchVersion, getVersion } from '../utils/index';
 import { createEvents, MOCK_USER_01, TIMEOUT } from './utils';

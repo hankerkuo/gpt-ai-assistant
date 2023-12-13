@@ -1,0 +1,78 @@
+import { encode } from 'gpt-3-encoder';
+import config from '@src/config/index';
+import { t } from '@src/locales/index';
+import { ROLE_AI, ROLE_HUMAN, ROLE_SYSTEM } from '@src/services/openai';
+import { addMark } from '@src/utils/index';
+import Message from './message';
+
+const MAX_MESSAGES = config.APP_MAX_PROMPT_MESSAGES + 3;
+const MAX_TOKENS = config.APP_MAX_PROMPT_TOKENS;
+
+class Prompt {
+  messages: Message[] = [];
+
+  constructor() {
+    this.write(
+      ROLE_SYSTEM,
+      config.APP_INIT_PROMPT || t('__COMPLETION_DEFAULT_SYSTEM_PROMPT'),
+    )
+      .write(
+        ROLE_HUMAN,
+        `${t('__COMPLETION_DEFAULT_HUMAN_PROMPT')(config.HUMAN_NAME)}${
+          config.HUMAN_INIT_PROMPT
+        }`,
+      )
+      .write(
+        ROLE_AI,
+        `${t('__COMPLETION_DEFAULT_AI_PROMPT')(config.BOT_NAME)}${
+          config.BOT_INIT_PROMPT
+        }`,
+      );
+  }
+
+  /**
+   * @returns {Message}
+   */
+  get lastMessage() {
+    return this.messages.length > 0
+      ? this.messages[this.messages.length - 1]
+      : null;
+  }
+
+  get tokenCount() {
+    const encoded = encode(this.toString());
+    return encoded.length;
+  }
+
+  erase() {
+    if (this.messages.length > 0) {
+      this.messages.pop();
+    }
+    return this;
+  }
+
+  /**
+   * @param {string} role
+   * @param {string} content
+   */
+  write(role: string, content = '') {
+    if (this.messages.length >= MAX_MESSAGES || this.tokenCount >= MAX_TOKENS) {
+      this.messages.splice(3, 1);
+    }
+    this.messages.push(new Message({ role, content: addMark(content) }));
+    return this;
+  }
+
+  /**
+   * @param {string} content
+   */
+  patch(content: string) {
+    this.messages[this.messages.length - 1].content += content;
+  }
+
+  toString() {
+    return this.messages.map((sentence) => sentence.toString()).join('');
+  }
+}
+
+export default Prompt;

@@ -1,5 +1,5 @@
-import Event from '../app/models/event';
-import { MOCK_TEXT_OK, MOCK_USER_01, MOCK_USER_02 } from '../constants/mock';
+import Event from '../src/app/models/event';
+import { MOCK_TEXT_OK, MOCK_USER_01, MOCK_USER_02 } from '../src/constants/mock';
 import {
   EVENT_TYPE_MESSAGE,
   MESSAGE_TYPE_TEXT,
