@@ -47,7 +47,13 @@ client.interceptors.response.use(handleFulfilled, (err) => {
   return handleRejected(err);
 });
 
-const reply = ({ replyToken, messages }: TReplyParam) =>
+const reply = ({
+  replyToken,
+  messages,
+}: TReplyParam): Promise<{
+  replyToken: string;
+  messages: any[];
+}> =>
   client.post('/v2/bot/message/reply', {
     replyToken,
     messages,

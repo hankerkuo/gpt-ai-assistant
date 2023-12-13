@@ -1,22 +1,22 @@
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { getPrompt, handleEvents, removePrompt } from '../app/index';
+import { getPrompt, handleEvents, removePrompt } from '../src/app/index';
 import {
   COMMAND_BOT_ACTIVATE,
   COMMAND_BOT_DEACTIVATE,
-} from '../app/commands/index';
-import { t } from '../locales/index';
+} from '../src/app/commands/index';
+import { t } from '../src/locales/index';
 import { createEvents, MOCK_TEXT_OK, MOCK_USER_01, TIMEOUT } from './utils';
 
-jest.mock('../db/service/user-service.js', () => ({
+jest.mock('../src/db/service/user-service.ts', () => ({
   decreaseTrialPrompts: jest.fn(),
 }));
 
-jest.mock('../db/service/chat-mode-service.js', () => ({
+jest.mock('../src/db/service/chat-mode-service.ts', () => ({
   getChatMode: jest.fn().mockReturnValue('CHAT'),
 }));
 
 beforeEach(async () => {
-  const events = [...createEvents([COMMAND_BOT_DEACTIVATE.text])];
+  const events: any = [...createEvents([COMMAND_BOT_DEACTIVATE.text])];
   await handleEvents(events);
 });
 
@@ -27,20 +27,24 @@ afterEach(() => {
 test(
   'COMMAND_BOT_ACTIVATE',
   async () => {
-    const events = [
+    const events: any = [
       ...createEvents(['嗨！']), // should be ignored
       ...createEvents([COMMAND_BOT_ACTIVATE.text]),
       ...createEvents(['嗨！']),
     ];
-    let results;
+    let results: {
+      replyToken: string;
+      messages: any[];
+    }[];
+    
     try {
       results = await handleEvents(events);
     } catch (err) {
       console.error(err);
     }
     expect(getPrompt(MOCK_USER_01).messages.length).toEqual(5);
-    const replies = results.map(({ messages }) =>
-      messages.map(({ text }) => text),
+    const replies = results!.map(({ messages }) =>
+      messages.map(({ text }: { text: string }) => text),
     );
     expect(replies).toEqual([
       [

@@ -5,13 +5,13 @@ import {
   MESSAGE_TYPE_TEXT,
   SOURCE_TYPE_GROUP,
   SOURCE_TYPE_USER,
-} from '../services/line';
+} from '../src/services/line';
 
 export const TIMEOUT = 9 * 1000;
 
-const createEvents = (messages, groupId, userId = MOCK_USER_01) =>
+const createEvents = (messages: any, groupId?: string, userId: string = MOCK_USER_01) =>
   messages.map(
-    (text) =>
+    (text: string) =>
       new Event({
         replyToken: '',
         type: EVENT_TYPE_MESSAGE,
