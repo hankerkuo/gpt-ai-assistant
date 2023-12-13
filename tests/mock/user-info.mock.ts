@@ -1,4 +1,4 @@
-export const mockUserInfo = (userId) => {
+export const mockUserInfo = (userId: string) => {
   switch (userId) {
     case 'trial_id':
       return {

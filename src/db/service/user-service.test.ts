@@ -5,22 +5,22 @@ import {
   firstTimeGrantTrialPrompts,
 } from './user-service';
 
-import { mockUserPrivilege } from '@src/tests/mock/user-privilege.mock';
-import { mockUserInfo } from '@src/tests/mock/user-info.mock';
+import { mockUserPrivilege } from '../../../tests/mock/user-privilege.mock';
+import { mockUserInfo } from '../../../tests/mock/user-info.mock';
 import { getPrisma } from '../prisma-client';
 
 const mockGetPrisma = getPrisma;
-jest.mock('../prisma-client.js', () => ({
+jest.mock('../prisma-client.ts', () => ({
   getPrisma: jest.fn().mockReturnValue({
     user_privilege: {
-      findUnique: async (condition) => {
+      findUnique: async (condition: any) => {
         return mockUserPrivilege(condition.where.USER_ID);
       },
       update: jest.fn(),
       create: jest.fn(),
     },
     user_info: {
-      findUnique: async (condition) => {
+      findUnique: async (condition: any) => {
         return mockUserInfo(condition.where.USER_ID);
       },
       create: jest.fn(),
@@ -61,8 +61,9 @@ describe('Test user service', () => {
     expect(result).toBe(true);
     const result2 = await manageTrialPrompts('id_no_need_to_renew');
     expect(result2).toBe(false);
+    const prismaAgent = await getPrisma();
     console.log(
-      await getPrisma().user_privilege.findUnique({
+      await prismaAgent.user_privilege.findUnique({
         where: {
           USER_ID: 'id_need_to_renew',
         },
@@ -72,7 +73,8 @@ describe('Test user service', () => {
 
   test('Test first time grant trial prompts', async () => {
     await firstTimeGrantTrialPrompts('id_not_exists', 10);
-    expect(getPrisma().user_info.create).toHaveBeenCalledWith({
+    const prismaAgent = await getPrisma();
+    expect(prismaAgent.user_info.create).toHaveBeenCalledWith({
       data: {
         USER_ID: 'id_not_exists',
         USER_NAME: 'Unknown',
@@ -82,6 +84,7 @@ describe('Test user service', () => {
 
   test('Test first time grant trial prompts with existing user', async () => {
     await firstTimeGrantTrialPrompts('trial_id', 10);
-    expect(getPrisma().user_info.create).toHaveBeenCalledTimes(0);
+    const prismaAgent = await getPrisma();
+    expect(prismaAgent.user_info.create).toHaveBeenCalledTimes(0);
   });
 });
