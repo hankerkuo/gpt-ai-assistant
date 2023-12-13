@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm ci --only=production
+RUN npm ci
+RUN npm build
 
 CMD [ "npm", "start" ]
