@@ -3,14 +3,14 @@ import {
   hasTrialPrivilege,
   manageTrialPrompts,
   firstTimeGrantTrialPrompts,
-} from './user-service';
+} from '../../../src/db/service/user-service';
 
-import { mockUserPrivilege } from '../../../tests/mock/user-privilege.mock';
-import { mockUserInfo } from '../../../tests/mock/user-info.mock';
-import { getPrisma } from '../prisma-client';
+import { mockUserPrivilege } from '../../mock/user-privilege.mock';
+import { mockUserInfo } from '../../mock/user-info.mock';
+import { getPrisma } from '../../../src/db/prisma-client';
 
 const mockGetPrisma = getPrisma;
-jest.mock('../prisma-client.ts', () => ({
+jest.mock('../../../src/db/prisma-client.ts', () => ({
   getPrisma: jest.fn().mockReturnValue({
     user_privilege: {
       findUnique: async (condition: any) => {
