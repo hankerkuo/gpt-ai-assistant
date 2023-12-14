@@ -1,8 +1,4 @@
-import {
-  TYPE_ANALYZE,
-  TYPE_SUM,
-  TYPE_TRANSLATE,
-} from '@src/constants/command';
+import { TYPE_ANALYZE, TYPE_SUM, TYPE_TRANSLATE } from '@src/constants/command';
 import COMMAND_ANALYZE_ANALYZE from './analyze-analyze';
 import COMMAND_ANALYZE_LITERARILY from './analyze-literarily';
 import COMMAND_ANALYZE_MATHEMATICALLY from './analyze-mathematically';

@@ -36,7 +36,7 @@ test(
       replyToken: string;
       messages: any[];
     }[];
-    
+
     try {
       results = await handleEvents(events);
     } catch (err) {

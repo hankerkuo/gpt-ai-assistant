@@ -1,8 +1,4 @@
-import {
-  TYPE_SUM,
-  TYPE_ANALYZE,
-  TYPE_TRANSLATE,
-} from '@src/constants/command';
+import { TYPE_SUM, TYPE_ANALYZE, TYPE_TRANSLATE } from '@src/constants/command';
 
 class Message {
   role;

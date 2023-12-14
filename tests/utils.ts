@@ -1,5 +1,9 @@
 import Event from '../src/app/models/event';
-import { MOCK_TEXT_OK, MOCK_USER_01, MOCK_USER_02 } from '../src/constants/mock';
+import {
+  MOCK_TEXT_OK,
+  MOCK_USER_01,
+  MOCK_USER_02,
+} from '../src/constants/mock';
 import {
   EVENT_TYPE_MESSAGE,
   MESSAGE_TYPE_TEXT,
@@ -9,7 +13,11 @@ import {
 
 export const TIMEOUT = 9 * 1000;
 
-const createEvents = (messages: any, groupId?: string, userId: string = MOCK_USER_01) =>
+const createEvents = (
+  messages: any,
+  groupId?: string,
+  userId: string = MOCK_USER_01,
+) =>
   messages.map(
     (text: string) =>
       new Event({
