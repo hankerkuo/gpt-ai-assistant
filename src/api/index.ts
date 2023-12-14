@@ -1,4 +1,6 @@
-import 'module-alias/register';
+if (process.env.NODE_ENV === 'production') {
+  require('module-alias/register');
+}
 import express from 'express';
 import { handleEvents, printPrompts } from '@src/app/index';
 import config from '@src/config/index';
@@ -6,6 +8,8 @@ import { validateLineSignature, authLineUser } from '@src/middleware/index';
 import storage from '@src/storage/index';
 import { fetchVersion, getVersion } from '@src/utils/index';
 import { IncomingMessage, ServerResponse } from 'http';
+
+import { ServicePool } from '@src/petner';
 
 const app = express();
 
@@ -55,6 +59,17 @@ app.post(
     if (config.APP_DEBUG) printPrompts();
   },
 );
+
+app.post('/petner', (req, res) => {
+  const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
+  console.log(req.body);
+  const { message } = req.body;
+
+  const { text } = message;
+  behaviorAnalyzer.getAssistentResponse(text).then((response) => {
+    res.status(200).send({ response });
+  });
+});
 
 if (config.APP_PORT) {
   app.listen(config.APP_PORT);
