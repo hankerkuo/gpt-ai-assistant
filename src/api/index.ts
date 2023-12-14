@@ -1,9 +1,9 @@
-if (process.env.NODE_ENV === 'production') {
+import config from '../config/index';
+if (config.APP_ENV === 'production') {
   require('module-alias/register');
 }
 import express from 'express';
 import { handleEvents, printPrompts } from '@src/app/index';
-import config from '@src/config/index';
 import { validateLineSignature, authLineUser } from '@src/middleware/index';
 import storage from '@src/storage/index';
 import { fetchVersion, getVersion } from '@src/utils/index';
@@ -60,15 +60,20 @@ app.post(
   },
 );
 
-app.post('/petner', (req, res) => {
-  const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
-  console.log(req.body);
-  const { message } = req.body;
+app.post('/petner', async (req, res) => {
+  try {
+    const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
+    // TODO: type the request body
+    console.log(req.body);
+    const { message } = req.body;
 
-  const { text } = message;
-  behaviorAnalyzer.getAssistentResponse(text).then((response) => {
+    const { text } = message;
+    const response = await behaviorAnalyzer.getAssistentResponse(text);
     res.status(200).send({ response });
-  });
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(500);
+  }
 });
 
 if (config.APP_PORT) {
