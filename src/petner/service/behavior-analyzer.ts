@@ -15,10 +15,11 @@ class BehaviorAnalyzer {
   }
 
   async handleMessage(message: TMessage): Promise<TChatCompletion> {
-    logger.info(`Current chat: ${JSON.stringify(this.previousChats)}`);
+    logger.info(`Handling the incoming message: ${JSON.stringify(message.content)}`);
     this.storePreviousChat(message);
     const chatCompletion = await promptHandler(this.previousChats);
     this.storePreviousChat(chatCompletion.choices[0].message);
+    logger.info(`Current chat: ${JSON.stringify(this.previousChats)}`);
     return chatCompletion;
   }
 

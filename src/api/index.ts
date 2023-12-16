@@ -17,6 +17,12 @@ interface CustomIncomingMessage extends IncomingMessage {
   rawBody?: string;
 }
 
+type TPetnerReqBody = {
+  message: {
+    text: string;
+  };
+}
+
 app.use(
   express.json({
     verify: (req: CustomIncomingMessage, res: ServerResponse, buf: Buffer) => {
@@ -63,12 +69,8 @@ app.post(
 app.post('/petner', async (req, res) => {
   try {
     const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
-    // TODO: type the request body
-    console.log(req.body);
-    const { message } = req.body;
-
-    const { text } = message;
-    const response = await behaviorAnalyzer.getAssistentResponse(text);
+    const body: TPetnerReqBody = req.body;
+    const response = await behaviorAnalyzer.getAssistentResponse(body.message.text);
     res.status(200).send({ response });
   } catch (error) {
     console.error(error);
