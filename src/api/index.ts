@@ -4,9 +4,13 @@ if (config.APP_ENV === 'production') {
 }
 import express from 'express';
 import { handleEvents, printPrompts } from '@src/app/index';
-import { validateLineSignature, authLineUser } from '@src/middleware/index';
+import {
+  validateLineSignature,
+  authLineUser,
+  authJwt,
+} from '@src/middleware/index';
 import storage from '@src/storage/index';
-import { fetchVersion, getVersion } from '@src/utils/index';
+import { fetchVersion, getVersion, logger } from '@src/utils/index';
 import { IncomingMessage, ServerResponse } from 'http';
 
 import { ServicePool } from '@src/petner';
@@ -21,7 +25,7 @@ type TPetnerReqBody = {
   message: {
     text: string;
   };
-}
+};
 
 app.use(
   express.json({
@@ -56,9 +60,9 @@ app.post(
       res.sendStatus(200);
     } catch (err) {
       if (err instanceof Error) {
-        console.error(err.message);
+        logger.error(err.message);
       } else {
-        console.error(err);
+        logger.error(err);
       }
       res.sendStatus(500);
     }
@@ -66,14 +70,16 @@ app.post(
   },
 );
 
-app.post('/petner', async (req, res) => {
+app.post('/petner', authJwt, async (req, res) => {
   try {
     const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
     const body: TPetnerReqBody = req.body;
-    const response = await behaviorAnalyzer.getAssistentResponse(body.message.text);
+    const response = await behaviorAnalyzer.getAssistentResponse(
+      body.message.text,
+    );
     res.status(200).send({ response });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     res.sendStatus(500);
   }
 });

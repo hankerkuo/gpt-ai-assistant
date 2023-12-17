@@ -1,13 +1,13 @@
 import BehaviorAnalyzer from '../service/behavior-analyzer';
 import { logger } from '@src/utils';
-import { Request } from 'express';
+import { JwtRequest } from '@src/middleware/auth-jwt';
 
 class ServicePool {
   private static behaviorAnalyzerPool: Map<string, BehaviorAnalyzer> =
     new Map();
 
-  static getBehaviorAnalyzer(req: Request): BehaviorAnalyzer {
-    const session = req.headers['petner-session'];
+  static getBehaviorAnalyzer(req: JwtRequest): BehaviorAnalyzer {
+    const session = req.jwt?.deviceId;
 
     if (!session) {
       throw new Error('Session is undefined, cannot provide BehaviorAnalyzer');
