@@ -1,7 +1,9 @@
 import { createChatCompletion } from '@src/services/openai';
 
+type TMessageRole = 'system' | 'user' | 'assistant' | 'tool' | 'function';
+
 export type TMessage = {
-  role: string;
+  role: TMessageRole;
   content: string;
 };
 
@@ -14,7 +16,7 @@ export type TChatCompletion = {
   choices: {
     index: number;
     message: {
-      role: string;
+      role: TMessageRole;
       content: string;
     };
     finish_reason: string;
