@@ -1,12 +1,12 @@
 import { promptHandler } from '../util/prompt-handler';
 import { logger } from '@src/utils';
 import type { TMessage, TChatCompletion } from '../util/prompt-handler';
+import config from '@src/config';
 
 class BehaviorAnalyzer {
   private _systemMessage: TMessage = {
     role: 'system',
-    content:
-      'You are a pet kept by a human, but human beings do not know you so well, try to explain every aspect you heard from the following conversation if it contains some pet behaviours. If there is nothing to explain, be a kind and polite pet to your human. Remember to act and talk like a pet.',
+    content: config.PROMPT_FOR_PETNER_ANALYZER,
   };
 
   private _chats: TMessage[] = [this._systemMessage];
@@ -26,15 +26,37 @@ class BehaviorAnalyzer {
     this._chats.push(message);
   }
 
-  private async handleMessage(message: TMessage): Promise<TChatCompletion> {
+  private async handleMessage(
+    message: TMessage,
+    type: 'chat' | 'single',
+  ): Promise<TChatCompletion> {
     logger.info(
-      `Handling the incoming message: ${JSON.stringify(message.content)}`,
+      `Handling the incoming message: ${JSON.stringify(
+        message.content,
+      )}, with type: ${type}`,
     );
-    this.storeChat(message);
-    const chatCompletion = await promptHandler(this.chats);
-    this.storeChat(chatCompletion.choices[0].message);
-    logger.info(`Current chat: ${JSON.stringify(this.chats)}`);
-    return chatCompletion;
+    switch (type) {
+      case 'chat':
+        this.storeChat(message);
+        const chatCompletion = await promptHandler(this.chats);
+        this.storeChat(chatCompletion.choices[0].message);
+        logger.info(`Current chat: ${JSON.stringify(this.chats)}`);
+        return chatCompletion;
+      case 'single':
+        const singleCompletion = await promptHandler([
+          this._systemMessage,
+          message,
+        ]);
+        logger.info(
+          `Current chat: ${JSON.stringify([
+            this._systemMessage,
+            singleCompletion.choices[0].message,
+          ])}`,
+        );
+        return singleCompletion;
+      default:
+        throw new Error(`Unknown type: ${type}`);
+    }
   }
 
   public clearPreviousChats() {
@@ -52,7 +74,7 @@ class BehaviorAnalyzer {
       role: 'user',
       content: text,
     };
-    const chatCompletion = await this.handleMessage(message);
+    const chatCompletion = await this.handleMessage(message, 'chat');
     const [choice] = chatCompletion.choices;
     return choice.message.content;
   }
@@ -67,7 +89,7 @@ class BehaviorAnalyzer {
       role: 'user',
       content: text,
     };
-    const chatCompletion = await promptHandler([this._systemMessage, message]);
+    const chatCompletion = await this.handleMessage(message, 'single');
     const [choice] = chatCompletion.choices;
     return choice.message.content;
   }
