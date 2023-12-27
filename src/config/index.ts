@@ -53,6 +53,7 @@ const config = Object.freeze({
   SERPAPI_LANG: env.SERPAPI_LANG || 'lang_zh-TW',
   JWT_SECRET: env.JWT_SECRET || null,
   JWT_EXPIRES_IN: env.JWT_EXPIRES_IN || '24h',
+  PROMPT_FOR_PETNER_ANALYZER: env.PROMPT_FOR_PETNER_ANALYZER || '',
 });
 
 export default config;

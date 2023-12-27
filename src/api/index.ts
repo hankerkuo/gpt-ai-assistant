@@ -74,10 +74,10 @@ app.post('/petner', authJwt, async (req, res) => {
   try {
     const behaviorAnalyzer = ServicePool.getBehaviorAnalyzer(req);
     const body: TPetnerReqBody = req.body;
-    const response = await behaviorAnalyzer.getAssistantResponse(
+    const message = await behaviorAnalyzer.getSingleResponse(
       body.message.text,
     );
-    res.status(200).send({ response });
+    res.status(200).send({ message });
   } catch (error) {
     logger.error(error);
     res.sendStatus(500);
